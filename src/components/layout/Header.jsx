@@ -21,17 +21,26 @@ function Header() {
           🍪
         </div>
 
-        {/* Centered Logo with fun animated rainbow shadow */}
-        <div className="relative transform transition-all duration-300 hover:scale-105">
-          <div className="absolute inset-0 bg-gradient-to-r from-phlox-400 via-dodger_blue-400 to-yellow_green-400 blur-sm opacity-15 rounded-2xl transform rotate-1 animate-pulse"></div>
+        <div className="relative animate-float">
           <Logo />
         </div>
-
-        {/* Cart floats on right */}
+       
         <div className="absolute right-4">
           <CartIcon />
         </div>
       </div>
+
+      {/* Add custom keyframes to your CSS or Tailwind config */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+        }
+        
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </header>
   )
 }
