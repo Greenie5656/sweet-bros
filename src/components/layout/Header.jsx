@@ -29,18 +29,6 @@ function Header() {
           <CartIcon />
         </div>
       </div>
-
-      {/* Add custom keyframes to your CSS or Tailwind config */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-6px); }
-        }
-        
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-      `}</style>
     </header>
   )
 }
