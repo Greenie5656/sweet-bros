@@ -33,6 +33,7 @@ export const getCollectionByHandle = async (handle) => {
   const query = `
     query getCollection($handle: String!) {
       collectionByHandle(handle: $handle) {
+        id
         title
         description
         image {
@@ -69,4 +70,70 @@ export const getCollectionByHandle = async (handle) => {
   `
   
   return shopifyFetch(query, { handle })
+}
+
+// Get multiple collections at once
+export const getMultipleCollections = async (handles) => {
+  const query = `
+    query getCollections {
+      ${handles.map((handle, index) => `
+        collection${index}: collectionByHandle(handle: "${handle}") {
+          id
+          title
+          description
+          handle
+          image {
+            url
+          }
+          products(first: 5) {
+            edges {
+              node {
+                id
+                title
+              }
+            }
+          }
+        }
+      `).join('\n')}
+    }
+  `
+  
+  return shopifyFetch(query)
+}
+
+// Get individual sweets for custom builders (from "All Products" collection)
+export const getAllSweets = async () => {
+  const query = `
+    query getAllProducts {
+      products(first: 50, query: "tag:individual") {
+        edges {
+          node {
+            id
+            title
+            description
+            tags
+            images(first: 1) {
+              edges {
+                node {
+                  url
+                }
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  price {
+                    amount
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+  
+  return shopifyFetch(query)
 }
