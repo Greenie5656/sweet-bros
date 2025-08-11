@@ -152,7 +152,7 @@ function ShopPage() {
             const customCableProduct = {
               id: 'custom-cable-bag',
               title: 'Build Your Own Cable Bag',
-              description: 'Pick any 4 cable flavors you love most',
+              description: 'Pick any 4 cable flavours you love most',
               price: 5.00,
               image: '/images/custom-cable-placeholder.jpg', // Use your local image
               variantId: 'custom-cable-variant',
