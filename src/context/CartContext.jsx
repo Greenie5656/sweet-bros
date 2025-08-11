@@ -24,6 +24,7 @@ export function CartProvider({ children }) {
   }, [cartItems])
 
   const addToCart = (product, quantity) => {
+    console.log('addToCart called with:', product, quantity) // Debug log
     if (quantity <= 0) return
 
     setCartItems(prevItems => {
@@ -46,6 +47,21 @@ export function CartProvider({ children }) {
         }]
       }
     })
+  }
+
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(productId)
+      return
+    }
+
+    setCartItems(prevItems => 
+      prevItems.map(item =>
+        item.id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    )
   }
 
   const removeFromCart = (productId) => {
@@ -71,6 +87,7 @@ export function CartProvider({ children }) {
     isCartOpen,
     addToCart,
     removeFromCart,
+    updateQuantity,
     toggleCart,
     closeCart
   }

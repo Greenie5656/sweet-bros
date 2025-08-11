@@ -1,44 +1,35 @@
 [
   {
     "id": "vimto-cable",
-    "name": "Vimto Giant Cable",
-    "flavor": "Vimto",
-    "shopifyTitle": "Vimto Giant Cable",
-    "image": "/images/cables/vimto.jpg"
+    "name": "Vimto Cable",
+    "flavour": "Vimto",
+    "image": "/images/cables/vimto_cable.jpg"
   },
   {
-    "id": "apple-cable", 
-    "name": "Apple Giant Cable",
-    "flavor": "Apple",
-    "shopifyTitle": "Apple Giant Cable",
-    "image": "/images/cables/apple.jpg"
+    "id": "apple-cable",
+    "name": "Apple Cable", 
+    "flavour": "Apple"
   },
   {
     "id": "sour-watermelon-cable",
-    "name": "Sour Watermelon Giant Cable", 
-    "flavor": "Sour Watermelon",
-    "shopifyTitle": "Sour Watermelon Giant Cable",
-    "image": "/images/cables/watermelon.jpg"
+    "name": "Sour Watermelon Cable",
+    "flavour": "Sour Watermelon",
+    "image": "/images/cables/sour_watermelon_cable.jpg"
   },
   {
     "id": "fizzy-cola-cable",
-    "name": "Fizzy Cola Giant Cable",
-    "flavor": "Fizzy Cola", 
-    "shopifyTitle": "Fizzy Cola Giant Cable",
-    "image": "/images/cables/cola.jpg"
+    "name": "Fizzy Cola Cable",
+    "flavour": "Fizzy Cola"
   },
   {
-    "id": "rainbow-cables",
-    "name": "Rainbow Cables",
-    "flavor": "Rainbow",
-    "shopifyTitle": "Rainbow Cables",
-    "image": "/images/cables/rainbow.jpg"
+    "id": "rainbow-cable",
+    "name": "Rainbow Cable",
+    "flavour": "Rainbow",
+    "image": "/images/cables/rainbow_cable.jpg"
   },
   {
     "id": "blackcurrant-cable",
-    "name": "Blackcurrant Giant Cable",
-    "flavor": "Blackcurrant",
-    "shopifyTitle": "Blackcurrant Giant Cable", 
-    "image": "/images/cables/blackcurrant.jpg"
+    "name": "Blackcurrant Cable", 
+    "flavour": "Blackcurrant"
   }
 ]

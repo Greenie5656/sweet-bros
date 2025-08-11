@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import Cart from '../cart/Cart'
 
 // Clean layout wrapper (CartProvider is already in App.jsx)
 function Layout({ children }) {
@@ -13,6 +14,9 @@ function Layout({ children }) {
         </div>
       </main>
       <Footer />
+      
+      {/* Cart Drawer */}
+      <Cart />
     </div>
   )
 }

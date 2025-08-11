@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Plus, Minus, Check } from 'lucide-react'
 import sweetsData from '../../data/sweets.json'
 import cablesData from '../../data/cables.json'
 
-function SweetPicker({ type = 'sweets' }) {
+function SweetPicker({ type = 'sweets', onSelectionChange }) {
   const [selectedItems, setSelectedItems] = useState([])
   
   // Configuration based on type
@@ -13,33 +13,57 @@ function SweetPicker({ type = 'sweets' }) {
       maxItems: 10,
       minItems: 5,
       title: 'Choose Your Sweets',
-      subtitle: 'Pick your favorites for the perfect mix'
+      subtitle: 'Pick your favourites for the perfect mix'
     },
     cables: {
       data: cablesData,
       maxItems: 4,
       minItems: 4,
-      title: 'Choose Your Cable Flavors', 
-      subtitle: 'Pick exactly 4 cable flavors'
+      title: 'Choose Your Cable Flavours', 
+      subtitle: 'Pick exactly 4 cable flavours'
     }
   }
 
   const currentConfig = config[type]
   const { data, maxItems, minItems, title, subtitle } = currentConfig
 
+  // Notify parent component when selection changes
+  useEffect(() => {
+    if (onSelectionChange) {
+      onSelectionChange(selectedItems)
+    }
+  }, [selectedItems, onSelectionChange])
+
   const isSelected = (itemId) => {
     return selectedItems.find(s => s.id === itemId) !== undefined
   }
 
+  const toggleItem = (item) => {
+    setSelectedItems(prevItems => {
+      const isCurrentlySelected = prevItems.find(s => s.id === item.id)
+      
+      if (isCurrentlySelected) {
+        // Remove item
+        return prevItems.filter(s => s.id !== item.id)
+      } else {
+        // Add item (if under limit)
+        if (prevItems.length < maxItems) {
+          return [...prevItems, item]
+        }
+        return prevItems
+      }
+    })
+  }
+
   const getCategoryColor = (category) => {
-    const colors = {
+    const colours = {
       'jelly': 'from-red-400 to-red-500',
       'fizzy': 'from-yellow_green-400 to-yellow_green-500',
       'chocolate': 'from-yellow-600 to-yellow-700',
       'soft': 'from-pink-400 to-pink-500',
       'hard': 'from-dodger_blue-400 to-dodger_blue-500',
       'sour': 'from-purple-400 to-purple-500',
-      // Cable colors by flavor
+      // Cable colours by flavour
       'Vimto': 'from-purple-500 to-purple-600',
       'Apple': 'from-green-500 to-green-600',
       'Sour Watermelon': 'from-green-400 to-pink-400',
@@ -47,7 +71,7 @@ function SweetPicker({ type = 'sweets' }) {
       'Rainbow': 'from-red-400 to-blue-400',
       'Blackcurrant': 'from-purple-600 to-purple-800'
     }
-    return colors[category] || 'from-gray-400 to-gray-500'
+    return colours[category] || 'from-gray-400 to-gray-500'
   }
 
   const isValidSelection = selectedItems.length >= minItems && selectedItems.length <= maxItems
@@ -77,10 +101,10 @@ function SweetPicker({ type = 'sweets' }) {
       {/* Category Filter for Sweets */}
       {type === 'sweets' && (
         <div className="flex flex-wrap gap-2">
-          {['all', 'jelly', 'fizzy', 'soft', 'sour'].map(category => (
+          {['all', 'jelly', 'fizzy', 'soft', 'sour', 'chocolate', 'hard'].map(category => (
             <button
               key={category}
-              className="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors capitalize"
+              className="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colours capitalize"
             >
               {category}
             </button>
@@ -92,7 +116,7 @@ function SweetPicker({ type = 'sweets' }) {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {data.map((item) => {
           const selected = isSelected(item.id)
-          const colorKey = type === 'cables' ? item.flavor : item.category
+          const colourKey = type === 'cables' ? item.flavour : item.category
           
           return (
             <div
@@ -111,36 +135,58 @@ function SweetPicker({ type = 'sweets' }) {
               `}
             >
               {/* Background Gradient */}
-              <div className={`aspect-square bg-gradient-to-br ${getCategoryColor(colorKey)} p-4 flex flex-col items-center justify-center text-white`}>
-                {/* Item Image Placeholder */}
-                <div className="text-4xl mb-2">
-                  {type === 'cables' ? '🪱' : '🍬'}
-                </div>
+              <div className={`aspect-square bg-gradient-to-br ${getCategoryColor(colourKey)} p-4 flex flex-col items-center justify-center text-white relative overflow-hidden`}>
                 
-                {/* Item Name */}
-                <div className="text-center text-sm font-medium leading-tight">
+                {/* Real Image or Emoji Fallback */}
+                {item.image ? (
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                ) : (
+                  <div className="text-4xl mb-2">
+                    {type === 'cables' ? '🪱' : '🍬'}
+                  </div>
+                )}
+                
+                {/* Overlay for text readability */}
+                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                
+                {/* Item Name - Moved to Top */}
+                <div className="absolute top-3 left-3 right-12 z-10 text-left text-sm font-bold leading-tight text-white drop-shadow-lg bg-black bg-opacity-40 rounded-lg px-2 py-1">
                   {item.name}
                 </div>
 
-                {/* Selection Indicator */}
+                {/* Selection Indicator - Moved to Top Right */}
                 {selected && (
-                  <div className="absolute top-2 right-2 bg-white text-phlox-500 rounded-full p-1">
-                    <Check className="w-4 h-4" />
+                  <div className="absolute top-3 right-3 bg-white text-phlox-500 rounded-full p-2 shadow-lg animate-pulse">
+                    <Check className="w-5 h-5" />
                   </div>
                 )}
 
-                {/* Add/Remove Button */}
+                {/* Add/Remove Button - Stays at Bottom */}
                 <div className={`
-                  absolute bottom-2 right-2 w-8 h-8 rounded-full flex items-center justify-center text-white
-                  ${selected ? 'bg-red-500' : 'bg-white/20'}
-                  transition-colors duration-200
+                  absolute bottom-3 right-3 w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg border-2 border-white
+                  ${selected 
+                    ? 'bg-red-500 hover:bg-red-600 animate-bounce' 
+                    : 'bg-phlox-500 hover:bg-phlox-600 hover:scale-110'
+                  }
+                  transition-all duration-200 transform
                 `}>
                   {selected ? (
-                    <Minus className="w-4 h-4" />
+                    <Minus className="w-5 h-5 font-bold" />
                   ) : (
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-5 h-5 font-bold" />
                   )}
                 </div>
+
+                {/* Fun Selection Badge - Moved to Bottom Left */}
+                {selected && (
+                  <div className="absolute bottom-3 left-3 bg-yellow_green-400 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
+                    ✨ PICKED!
+                  </div>
+                )}
               </div>
             </div>
           )
@@ -167,7 +213,7 @@ function SweetPicker({ type = 'sweets' }) {
           {!isValidSelection && (
             <div className="mt-3 text-sm text-amber-600 bg-amber-50 px-3 py-2 rounded-lg">
               {type === 'cables' 
-                ? `Please select exactly ${minItems} cable flavors`
+                ? `Please select exactly ${minItems} cable flavours`
                 : `Please select ${minItems}-${maxItems} sweets to continue`
               }
             </div>

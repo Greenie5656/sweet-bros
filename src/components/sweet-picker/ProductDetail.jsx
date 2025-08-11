@@ -1,9 +1,69 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Sparkles, Package } from 'lucide-react'
+import { useCart } from '../../context/CartContext'
 import SweetPicker from './SweetPicker'
 import QuantitySelector from './QuantitySelector'
 
 function ProductDetail({ product, onBack }) {
+  const { addToCart } = useCart()
+  const [quantity, setQuantity] = useState(product.minQuantity || 1)
+  const [selectedSweets, setSelectedSweets] = useState([])
+
+  const handleAddToCart = () => {
+    console.log('Adding to cart:', { product, quantity, selectedSweets })
+    
+    // For custom products, validate selections
+    if (product.isCustom) {
+      const minRequired = product.customType === 'cables' ? 4 : 5
+      const maxAllowed = product.customType === 'cables' ? 4 : 10
+      
+      if (selectedSweets.length < minRequired) {
+        alert(`Please select at least ${minRequired} ${product.customType === 'cables' ? 'cable flavours' : 'sweets'}!`)
+        return
+      }
+      
+      if (selectedSweets.length > maxAllowed) {
+        alert(`Please select no more than ${maxAllowed} ${product.customType === 'cables' ? 'cable flavours' : 'sweets'}!`)
+        return
+      }
+    }
+
+    // Create a custom product title that includes the selections
+    let customTitle = product.title
+    if (product.isCustom && selectedSweets.length > 0) {
+      const sweetNames = selectedSweets.map(s => s.name).join(', ')
+      customTitle = `${product.title} (${sweetNames})`
+    }
+
+    // Add the product to cart
+    addToCart({
+      id: product.isCustom ? `${product.id}-${Date.now()}` : product.id, // Unique ID for custom products
+      title: customTitle,
+      price: product.price,
+      image: product.image,
+      variantId: product.variantId,
+      customSweets: product.isCustom ? selectedSweets : null,
+      isCustom: product.isCustom || false
+    }, quantity)
+
+    // Show success feedback
+    alert(`Added ${quantity} x ${customTitle} to cart!`)
+    
+    // Reset selections for custom products
+    if (product.isCustom) {
+      setSelectedSweets([])
+    }
+  }
+
+  const canAddToCart = () => {
+    if (!product.isCustom) return true
+    
+    const minRequired = product.customType === 'cables' ? 4 : 5
+    const maxAllowed = product.customType === 'cables' ? 4 : 10
+    
+    return selectedSweets.length >= minRequired && selectedSweets.length <= maxAllowed
+  }
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -68,6 +128,7 @@ function ProductDetail({ product, onBack }) {
               <QuantitySelector 
                 min={product.minQuantity || 1}
                 max={20}
+                onChange={setQuantity}
               />
             </div>
           )}
@@ -77,17 +138,45 @@ function ProductDetail({ product, onBack }) {
             <div>
               <h3 className="text-xl font-bold text-gray-800 mb-4">
                 {product.customType === 'cables' 
-                  ? 'Choose Your Cable Flavors' 
+                  ? 'Choose Your Cable Flavours' 
                   : 'Build Your Perfect Mix'
                 }
               </h3>
-              <SweetPicker type={product.customType || 'sweets'} />
+              <SweetPicker 
+                type={product.customType || 'sweets'} 
+                onSelectionChange={setSelectedSweets}
+              />
+            </div>
+          )}
+
+          {/* Selection Summary for Custom Products */}
+          {product.isCustom && selectedSweets.length > 0 && (
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+              <h4 className="font-semibold text-green-800 mb-2">
+                Your Selection ({selectedSweets.length} items):
+              </h4>
+              <div className="text-sm text-green-700">
+                {selectedSweets.map(sweet => sweet.name).join(', ')}
+              </div>
             </div>
           )}
 
           {/* Action Button */}
-          <button className="w-full bg-gradient-to-r from-phlox-500 to-phlox-600 hover:from-phlox-600 hover:to-phlox-700 text-white font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-            {product.isCustom ? 'Add Custom Mix to Bag' : 'Add to Bag'}
+          <button 
+            onClick={handleAddToCart}
+            disabled={!canAddToCart()}
+            className={`
+              w-full font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg
+              ${canAddToCart() 
+                ? 'bg-gradient-to-r from-phlox-500 to-phlox-600 hover:from-phlox-600 hover:to-phlox-700 text-white' 
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }
+            `}
+          >
+            {product.isCustom 
+              ? (canAddToCart() ? 'Add Custom Mix to Bag' : 'Please Complete Your Selection')
+              : 'Add to Bag'
+            }
           </button>
         </div>
       </div>

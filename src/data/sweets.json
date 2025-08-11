@@ -1,142 +1,155 @@
 [
   {
-    "id": "gold-bears",
-    "name": "Gold Bears",
+    "id": "haribo-cola-bottles",
+    "name": "Haribo Cola Bottles",
     "category": "jelly",
-    "shopifyTitle": "Gold Bears",
-    "image": "/images/sweets/gold-bears.jpg"
+    "image": "/images/sweets/cola_bottles.jpg"
   },
   {
-    "id": "cola-bottles", 
-    "name": "Cola Bottles",
-    "category": "jelly",
-    "shopifyTitle": "Cola Bottles",
-    "image": "/images/sweets/cola-bottles.jpg"
+    "id": "sour-cherries",
+    "name": "Sour Cherries",
+    "category": "sour",
+    "image": "/images/sweets/happy_cherries.jpg"
   },
   {
     "id": "fizzy-cola-bottles",
-    "name": "Fizzy Cola Bottles", 
+    "name": "Fizzy Cola Bottles",
     "category": "fizzy",
-    "shopifyTitle": "Fizzy Cola Bottles",
-    "image": "/images/sweets/fizzy-cola-bottles.jpg"
+    "image": "/images/sweets/fizzy_cola.jpg"
   },
   {
-    "id": "fizzy-watermelon-slices",
-    "name": "Fizzy Watermelon Slices",
-    "category": "fizzy", 
-    "shopifyTitle": "Fizzy Watermelon Slices",
-    "image": "/images/sweets/fizzy-watermelon.jpg"
-  },
-  {
-    "id": "jelly-babies",
-    "name": "Jelly Babies",
+    "id": "gummy-bears",
+    "name": "Gummy Bears",
     "category": "jelly",
-    "shopifyTitle": "Jelly Babies", 
-    "image": "/images/sweets/jelly-babies.jpg"
+    "image": "/images/sweets/gold_bears.jpg"
   },
   {
-    "id": "foam-bananas",
-    "name": "Foam Bananas",
+    "id": "chocolate-buttons",
+    "name": "Chocolate Buttons",
+    "category": "chocolate"
+  },
+  {
+    "id": "marshmallow-twists",
+    "name": "Marshmallow Twists",
     "category": "soft",
-    "shopifyTitle": "Foam Bananas",
-    "image": "/images/sweets/foam-bananas.jpg"
-  },
-  {
-    "id": "fried-eggs",
-    "name": "Fried Eggs", 
-    "category": "jelly",
-    "shopifyTitle": "Fried Eggs",
-    "image": "/images/sweets/fried-eggs.jpg"
-  },
-  {
-    "id": "terrific-turtles",
-    "name": "Terrific Turtles",
-    "category": "jelly",
-    "shopifyTitle": "Terrific Turtles", 
-    "image": "/images/sweets/turtles.jpg"
-  },
-  {
-    "id": "friendship-rings",
-    "name": "Friendship Rings",
-    "category": "jelly",
-    "shopifyTitle": "Friendship Rings",
-    "image": "/images/sweets/rings.jpg"
-  },
-  {
-    "id": "sour-dummies",
-    "name": "Sour Dummies",
-    "category": "sour",
-    "shopifyTitle": "Sour Dummies", 
-    "image": "/images/sweets/sour-dummies.jpg"
-  },
-  {
-    "id": "giant-sour-cherries",
-    "name": "Giant Sour Cherries",
-    "category": "sour",
-    "shopifyTitle": "Giant Sour Cherries",
-    "image": "/images/sweets/sour-cherries.jpg"
-  },
-  {
-    "id": "marshmallows",
-    "name": "Marshmallows",
-    "category": "soft", 
-    "shopifyTitle": "Marshmallows",
-    "image": "/images/sweets/marshmallows.jpg"
-  },
-  {
-    "id": "yellow-belly-snakes",
-    "name": "Yellow Belly Snakes",
-    "category": "jelly",
-    "shopifyTitle": "Yellow Belly Snakes",
-    "image": "/images/sweets/snakes.jpg"
-  },
-  {
-    "id": "flying-saucers",
-    "name": "Flying Saucers", 
-    "category": "fizzy",
-    "shopifyTitle": "Flying Saucers",
-    "image": "/images/sweets/saucers.jpg"
-  },
-  {
-    "id": "happy-cherries",
-    "name": "Happy Cherries",
-    "category": "jelly",
-    "shopifyTitle": "Happy Cherries",
-    "image": "/images/sweets/cherries.jpg"
-  },
-  {
-    "id": "fizzy-jelly-mix", 
-    "name": "Fizzy Jelly Mix",
-    "category": "fizzy",
-    "shopifyTitle": "Fizzy Jelly Mix",
-    "image": "/images/sweets/fizzy-jelly.jpg"
-  },
-  {
-    "id": "sour-blue-strawberries",
-    "name": "Sour Blue Strawberries",
-    "category": "sour",
-    "shopifyTitle": "Sour Blue Strawberries",
-    "image": "/images/sweets/blue-strawberries.jpg"
-  },
-  {
-    "id": "foam-shrimps",
-    "name": "Foam Shrimps",
-    "category": "soft", 
-    "shopifyTitle": "Foam Shrimps",
-    "image": "/images/sweets/shrimps.jpg"
-  },
-  {
-    "id": "heart-throbs",
-    "name": "Heart Throbs",
-    "category": "jelly",
-    "shopifyTitle": "Heart Throbs",
-    "image": "/images/sweets/hearts.jpg"
+    "image": "/images/sweets/marshmellows.jpg"
   },
   {
     "id": "sour-worms",
     "name": "Sour Worms",
     "category": "sour",
-    "shopifyTitle": "Sour Worms", 
-    "image": "/images/sweets/worms.jpg"
+    "image": "/images/sweets/snakes.jpg"
+  },
+  {
+    "id": "fizzy-rings",
+    "name": "Fizzy Rings",
+    "category": "fizzy",
+    "image": "/images/sweets/friendship_ring.jpg"
+  },
+  {
+    "id": "jelly-babies",
+    "name": "Jelly Babies",
+    "category": "jelly",
+    "image": "/images/sweets/jelly_babies.jpg"
+  },
+  {
+    "id": "sherbet-lemons",
+    "name": "Sherbet Lemons",
+    "category": "hard"
+  },
+  {
+    "id": "wine-gums",
+    "name": "Wine Gums",
+    "category": "jelly"
+  },
+  {
+    "id": "foam-bananas",
+    "name": "Foam Bananas",
+    "category": "soft",
+    "image": "/images/sweets/foam_bananas.jpg"
+  },
+  {
+    "id": "sour-apples",
+    "name": "Sour Apples",
+    "category": "sour"
+  },
+  {
+    "id": "fizzy-dummies",
+    "name": "Fizzy Dummies",
+    "category": "fizzy",
+    "image": "/images/sweets/sour_dummies.jpg"
+  },
+  {
+    "id": "milk-bottles",
+    "name": "Milk Bottles",
+    "category": "jelly"
+  },
+  {
+    "id": "liquorice-allsorts",
+    "name": "Liquorice Allsorts",
+    "category": "hard"
+  },
+  {
+    "id": "strawberry-laces",
+    "name": "Strawberry Laces",
+    "category": "soft"
+  },
+  {
+    "id": "sour-strips",
+    "name": "Sour Strips",
+    "category": "sour",
+    "image": "/images/sweets/sour_blue_strawberries.jpg"
+  },
+  {
+    "id": "fizzy-belts",
+    "name": "Fizzy Belts",
+    "category": "fizzy"
+  },
+  {
+    "id": "drumstick-lollies",
+    "name": "Drumstick Lollies",
+    "category": "hard"
+  },
+  {
+    "id": "fizzy-watermelon",
+    "name": "Fizzy Watermelon",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_watermelon.jpg"
+  },
+  {
+    "id": "flying-saucers",
+    "name": "Flying Saucers",
+    "category": "fizzy",
+    "image": "/images/sweets/flying_saucers.jpg"
+  },
+  {
+    "id": "foam-shrimps",
+    "name": "Foam Shrimps",
+    "category": "soft",
+    "image": "/images/sweets/foam_shrimps.jpg"
+  },
+  {
+    "id": "fried-eggs",
+    "name": "Fried Eggs",
+    "category": "jelly",
+    "image": "/images/sweets/fried_eggs.jpg"
+  },
+  {
+    "id": "giant-sour-cherries",
+    "name": "Giant Sour Cherries",
+    "category": "sour",
+    "image": "/images/sweets/giant_sour_cherries.jpg"
+  },
+  {
+    "id": "heart-throbs",
+    "name": "Heart Throbs",
+    "category": "jelly",
+    "image": "/images/sweets/heart_throbs.jpg"
+  },
+  {
+    "id": "terrific-turtles",
+    "name": "Terrific Turtles",
+    "category": "chocolate",
+    "image": "/images/sweets/terrific_turtles.jpg"
   }
 ]
