@@ -137,3 +137,183 @@ export const getAllSweets = async () => {
   
   return shopifyFetch(query)
 }
+
+// Get variant ID from product ID
+export const getProductVariantId = async (productId) => {
+  const query = `
+    query getProduct($id: ID!) {
+      product(id: $id) {
+        id
+        title
+        variants(first: 1) {
+          edges {
+            node {
+              id
+              title
+              price {
+                amount
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+  
+  const gqlProductId = `gid://shopify/Product/${productId}`
+  
+  try {
+    const response = await shopifyFetch(query, { id: gqlProductId })
+    const product = response.product
+    
+    if (product && product.variants.edges.length > 0) {
+      return product.variants.edges[0].node.id
+    }
+    
+    throw new Error(`No variants found for product ${productId}`)
+  } catch (error) {
+    console.error(`Error fetching variant for product ${productId}:`, error)
+    throw error
+  }
+}
+
+// ===================
+// CART API FUNCTIONS
+// ===================
+
+// Create a new cart with line items
+export const createCart = async (lineItems) => {
+  const query = `
+    mutation cartCreate($cartInput: CartInput!) {
+      cartCreate(input: $cartInput) {
+        cart {
+          id
+          checkoutUrl
+          estimatedCost {
+            totalAmount {
+              amount
+              currencyCode
+            }
+          }
+          lines(first: 100) {
+            edges {
+              node {
+                id
+                quantity
+                estimatedCost {
+                  totalAmount {
+                    amount
+                    currencyCode
+                  }
+                }
+                merchandise {
+                  ... on ProductVariant {
+                    id
+                    title
+                    product {
+                      title
+                    }
+                  }
+                }
+                attributes {
+                  key
+                  value
+                }
+              }
+            }
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `
+
+  const variables = {
+    cartInput: {
+      lines: lineItems
+    }
+  }
+
+  return shopifyFetch(query, variables)
+}
+
+// Add lines to existing cart
+export const addToCart = async (cartId, lineItems) => {
+  const query = `
+    mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+      cartLinesAdd(cartId: $cartId, lines: $lines) {
+        cart {
+          id
+          checkoutUrl
+          estimatedCost {
+            totalAmount {
+              amount
+              currencyCode
+            }
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `
+
+  const variables = {
+    cartId,
+    lines: lineItems
+  }
+
+  return shopifyFetch(query, variables)
+}
+
+// Get cart by ID
+export const getCart = async (cartId) => {
+  const query = `
+    query getCart($cartId: ID!) {
+      cart(id: $cartId) {
+        id
+        checkoutUrl
+        estimatedCost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+        }
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              estimatedCost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  product {
+                    title
+                  }
+                }
+              }
+              attributes {
+                key
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+
+  return shopifyFetch(query, { cartId })
+}

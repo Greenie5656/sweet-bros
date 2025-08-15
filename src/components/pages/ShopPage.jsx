@@ -123,7 +123,7 @@ function ShopPage() {
             description: 'Pick 5-10 of your favorite sweets for a custom 500g bag',
             price: 7.50,
             image: '/images/custom-bag-placeholder.jpg', // Use your local image
-            variantId: 'custom-bag-variant',
+            variantId: null,
             collection: collection.handle,
             isCustom: true,
             customType: 'sweets'
@@ -155,7 +155,7 @@ function ShopPage() {
               description: 'Pick any 4 cable flavours you love most',
               price: 5.00,
               image: '/images/custom-cable-placeholder.jpg', // Use your local image
-              variantId: 'custom-cable-variant',
+              variantId: null,
               collection: collection.handle,
               isCustom: true,
               customType: 'cables'

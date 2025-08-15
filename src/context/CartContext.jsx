@@ -43,7 +43,12 @@ export function CartProvider({ children }) {
           price: parseFloat(product.price),
           image: product.image,
           quantity: quantity,
-          variantId: product.variantId
+          variantId: product.variantId,
+          // SAVE ALL CUSTOM PROPERTIES
+          isCustom: product.isCustom || false,
+          customSweets: product.customSweets || null,
+          customCables: product.customCables || null,
+          customType: product.customType || null
         }]
       }
     })

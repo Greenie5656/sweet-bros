@@ -35,14 +35,18 @@ function ProductDetail({ product, onBack }) {
       customTitle = `${product.title} (${sweetNames})`
     }
 
+    // For custom products, we'll let the checkout handle the variant ID lookup
+    let variantId = product.variantId
+
     // Add the product to cart
     addToCart({
       id: product.isCustom ? `${product.id}-${Date.now()}` : product.id, // Unique ID for custom products
       title: customTitle,
       price: product.price,
       image: product.image,
-      variantId: product.variantId,
-      customSweets: product.isCustom ? selectedSweets : null,
+      variantId: variantId,
+      customSweets: product.isCustom && product.customType !== 'cables' ? selectedSweets : null,
+      customCables: product.isCustom && product.customType === 'cables' ? selectedSweets : null,
       isCustom: product.isCustom || false
     }, quantity)
 

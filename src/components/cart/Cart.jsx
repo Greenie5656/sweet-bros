@@ -1,17 +1,28 @@
-import React from 'react'
-import { X, ShoppingBag, ArrowRight } from 'lucide-react'
+import React, { useState } from 'react'
+import { X, ShoppingBag } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 import CartItem from './CartItem'
+import CheckoutButton from './CheckoutButton'
 
 function Cart() {
   const { cartItems, cartTotal, cartCount, isCartOpen, closeCart } = useCart()
+  const [checkoutError, setCheckoutError] = useState(null)
 
   if (!isCartOpen) return null
 
-  const handleCheckout = () => {
-    // TODO: Integrate with Shopify Cart API
-    console.log('Sending to Shopify checkout:', cartItems)
-    // This is where we'll add the Shopify integration later
+  const handleCheckoutSuccess = (cart) => {
+    console.log('Checkout successful! Cart ID:', cart.id)
+    // Clear local cart since order is now in Shopify
+    localStorage.removeItem('sweetBrosCart')
+    // Note: User will be redirected to Shopify, so this might not execute
+  }
+
+  const handleCheckoutError = (error) => {
+    console.error('Checkout failed:', error)
+    setCheckoutError(error)
+    
+    // Clear error after 5 seconds
+    setTimeout(() => setCheckoutError(null), 5000)
   }
 
   return (
@@ -40,6 +51,13 @@ function Cart() {
             <X className="w-5 h-5 text-gray-600" />
           </button>
         </div>
+
+        {/* Error Message */}
+        {checkoutError && (
+          <div className="mx-4 mt-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded-lg text-sm">
+            <strong>Checkout Error:</strong> {checkoutError}
+          </div>
+        )}
 
         {/* Cart Content */}
         <div className="flex flex-col h-full">
@@ -90,13 +108,11 @@ function Cart() {
                 </div>
 
                 {/* Checkout Button */}
-                <button
-                  onClick={handleCheckout}
-                  className="w-full bg-gradient-to-r from-phlox-500 to-phlox-600 hover:from-phlox-600 hover:to-phlox-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-3"
-                >
-                  <span>Checkout</span>
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                <CheckoutButton 
+                  cartItems={cartItems}
+                  onSuccess={handleCheckoutSuccess}
+                  onError={handleCheckoutError}
+                />
 
                 {/* Continue Shopping */}
                 <button
