@@ -8,7 +8,8 @@
   {
     "id": "apple-cable",
     "name": "Apple Cable", 
-    "flavour": "Apple"
+    "flavour": "Apple",
+     "image": "/images/cables/apple_cable.jpg"
   },
   {
     "id": "sour-watermelon-cable",
@@ -19,7 +20,8 @@
   {
     "id": "fizzy-cola-cable",
     "name": "Fizzy Cola Cable",
-    "flavour": "Fizzy Cola"
+    "flavour": "Fizzy Cola",
+     "image": "/images/cables/fizzy_cola_cable.jpg"
   },
   {
     "id": "rainbow-cable",
@@ -30,6 +32,7 @@
   {
     "id": "blackcurrant-cable",
     "name": "Blackcurrant Cable", 
-    "flavour": "Blackcurrant"
+    "flavour": "Blackcurrant",
+     "image": "/images/cables/blackcurrant_cable.jpg"
   }
 ]
