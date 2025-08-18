@@ -71,6 +71,7 @@ export default {
       },
       fontFamily: {
         'marble': ['Marble', 'system-ui', 'sans-serif'],
+        'sans': ['Nunito', 'system-ui', 'sans-serif'],
       },
       fontWeight: {
         'light': 300,

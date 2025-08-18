@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Plus, Minus, Check } from 'lucide-react'
 import sweetsData from '../../data/sweets.json'
 import cablesData from '../../data/cables.json'
+import { getItemColour } from '../../utils/colourHelpers'
+
 
 function SweetPicker({ type = 'sweets', onSelectionChange }) {
   const [selectedItems, setSelectedItems] = useState([])
@@ -55,25 +57,6 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
     })
   }
 
-  const getCategoryColor = (category) => {
-    const colours = {
-      'jelly': 'from-red-400 to-red-500',
-      'fizzy': 'from-yellow_green-400 to-yellow_green-500',
-      'chocolate': 'from-yellow-600 to-yellow-700',
-      'soft': 'from-pink-400 to-pink-500',
-      'hard': 'from-dodger_blue-400 to-dodger_blue-500',
-      'sour': 'from-purple-400 to-purple-500',
-      // Cable colours by flavour
-      'Vimto': 'from-purple-500 to-purple-600',
-      'Apple': 'from-green-500 to-green-600',
-      'Sour Watermelon': 'from-green-400 to-pink-400',
-      'Fizzy Cola': 'from-yellow-800 to-yellow-900',
-      'Rainbow': 'from-red-400 to-blue-400',
-      'Blackcurrant': 'from-purple-600 to-purple-800'
-    }
-    return colours[category] || 'from-gray-400 to-gray-500'
-  }
-
   const isValidSelection = selectedItems.length >= minItems && selectedItems.length <= maxItems
 
   return (
@@ -98,25 +81,11 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
         </div>
       </div>
 
-      {/* Category Filter for Sweets */}
-      {type === 'sweets' && (
-        <div className="flex flex-wrap gap-2">
-          {['all', 'jelly', 'fizzy', 'soft', 'sour', 'chocolate', 'hard'].map(category => (
-            <button
-              key={category}
-              className="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colours capitalize"
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      )}
-
       {/* Items Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {data.map((item) => {
           const selected = isSelected(item.id)
-          const colourKey = type === 'cables' ? item.flavour : item.category
+          const itemColour = getItemColour(item.id) // Get consistent random colour per item
           
           return (
             <div
@@ -134,8 +103,8 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
                 }
               `}
             >
-              {/* Background Gradient */}
-              <div className={`aspect-square bg-gradient-to-br ${getCategoryColor(colourKey)} p-4 flex flex-col items-center justify-center text-white relative overflow-hidden`}>
+              {/* Background with Random Colour */}
+              <div className={`aspect-square bg-gradient-to-br ${itemColour.gradient} p-4 flex flex-col items-center justify-center text-white relative overflow-hidden`}>
                 
                 {/* Real Image or Emoji Fallback */}
                 {item.image ? (
@@ -146,31 +115,31 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
                   />
                 ) : (
                   <div className="text-4xl mb-2">
-                    {type === 'cables' ? '🪱' : '🍬'}
+                    {type === 'cables' ? '🪱' : '�'}
                   </div>
                 )}
                 
                 {/* Overlay for text readability */}
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
                 
-                {/* Item Name - Moved to Top */}
+                {/* Item Name */}
                 <div className="absolute top-3 left-3 right-12 z-10 text-left text-sm font-bold leading-tight text-white drop-shadow-lg bg-black bg-opacity-40 rounded-lg px-2 py-1">
                   {item.name}
                 </div>
 
-                {/* Selection Indicator - Moved to Top Right */}
+                {/* Selection Indicator */}
                 {selected && (
                   <div className="absolute top-3 right-3 bg-white text-phlox-500 rounded-full p-2 shadow-lg animate-pulse">
                     <Check className="w-5 h-5" />
                   </div>
                 )}
 
-                {/* Add/Remove Button - Stays at Bottom */}
+                {/* Add/Remove Button */}
                 <div className={`
                   absolute bottom-3 right-3 w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg border-2 border-white
                   ${selected 
                     ? 'bg-red-500 hover:bg-red-600 animate-bounce' 
-                    : 'bg-phlox-500 hover:bg-phlox-600 hover:scale-110'
+                    : `${itemColour.bg} ${itemColour.hover} hover:scale-110`
                   }
                   transition-all duration-200 transform
                 `}>
@@ -181,7 +150,7 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
                   )}
                 </div>
 
-                {/* Fun Selection Badge - Moved to Bottom Left */}
+                {/* Fun Selection Badge */}
                 {selected && (
                   <div className="absolute bottom-3 left-3 bg-yellow_green-400 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
                     ✨ PICKED!
@@ -200,14 +169,17 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
             Your {type === 'cables' ? 'Cable' : 'Sweet'} Selection:
           </h4>
           <div className="flex flex-wrap gap-2">
-            {selectedItems.map((item) => (
-              <span
-                key={item.id}
-                className="bg-phlox-100 text-phlox-800 px-3 py-1 rounded-full text-sm font-medium"
-              >
-                {item.name}
-              </span>
-            ))}
+            {selectedItems.map((item) => {
+              const itemColour = getItemColour(item.id)
+              return (
+                <span
+                  key={item.id}
+                  className={`${itemColour.bg} text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm`}
+                >
+                  {item.name}
+                </span>
+              )
+            })}
           </div>
           
           {!isValidSelection && (
