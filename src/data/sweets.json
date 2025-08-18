@@ -1,13 +1,13 @@
 [
   {
-    "id": "haribo-cola-bottles",
-    "name": "Haribo Cola Bottles",
+    "id": "cola-bottles",
+    "name": "Cola Bottles",
     "category": "jelly",
     "image": "/images/sweets/cola_bottles.jpg"
   },
   {
-    "id": "sour-cherries",
-    "name": "Sour Cherries",
+    "id": "happy-cherries",
+    "name": "Happy Cherries",
     "category": "sour",
     "image": "/images/sweets/happy_cherries.jpg"
   },
@@ -18,31 +18,32 @@
     "image": "/images/sweets/fizzy_cola.jpg"
   },
   {
-    "id": "gummy-bears",
-    "name": "Gummy Bears",
+    "id": "gold-bears",
+    "name": "Gold Bears",
     "category": "jelly",
     "image": "/images/sweets/gold_bears.jpg"
   },
   {
-    "id": "chocolate-buttons",
-    "name": "Chocolate Buttons",
-    "category": "chocolate"
+    "id": "chocolate-jazzies",
+    "name": "Chocolate Jazzies",
+    "category": "chocolate",
+    "image": "/images/sweets/chocolate_jazzies.jpg"
   },
   {
-    "id": "marshmallow-twists",
-    "name": "Marshmallow Twists",
+    "id": "marshmallows",
+    "name": "Marshmallows",
     "category": "soft",
     "image": "/images/sweets/marshmellows.jpg"
   },
   {
-    "id": "sour-worms",
-    "name": "Sour Worms",
+    "id": "yellow-belly-snakes",
+    "name": "Yellow Belly Snakes",
     "category": "sour",
     "image": "/images/sweets/snakes.jpg"
   },
   {
-    "id": "fizzy-rings",
-    "name": "Fizzy Rings",
+    "id": "friendship-rings",
+    "name": "Friendship Rings",
     "category": "fizzy",
     "image": "/images/sweets/friendship_ring.jpg"
   },
@@ -53,66 +54,32 @@
     "image": "/images/sweets/jelly_babies.jpg"
   },
   {
-    "id": "sherbet-lemons",
-    "name": "Sherbet Lemons",
-    "category": "hard"
-  },
-  {
-    "id": "wine-gums",
-    "name": "Wine Gums",
-    "category": "jelly"
-  },
-  {
     "id": "foam-bananas",
     "name": "Foam Bananas",
     "category": "soft",
     "image": "/images/sweets/foam_bananas.jpg"
   },
   {
-    "id": "sour-apples",
-    "name": "Sour Apples",
-    "category": "sour"
-  },
-  {
-    "id": "fizzy-dummies",
-    "name": "Fizzy Dummies",
+    "id": "sour-dummies",
+    "name": "Sour Dummies",
     "category": "fizzy",
     "image": "/images/sweets/sour_dummies.jpg"
   },
   {
-    "id": "milk-bottles",
-    "name": "Milk Bottles",
-    "category": "jelly"
+    "id": "white-pink-mice",
+    "name": "White & Pink Mice",
+    "category": "soft",
+    "image": "/images/sweets/white_pink_mice.jpg"
   },
   {
-    "id": "liquorice-allsorts",
-    "name": "Liquorice Allsorts",
-    "category": "hard"
-  },
-  {
-    "id": "strawberry-laces",
-    "name": "Strawberry Laces",
-    "category": "soft"
-  },
-  {
-    "id": "sour-strips",
-    "name": "Sour Strips",
+    "id": "sour-blue-strawberries",
+    "name": "Sour Blue Strawberries",
     "category": "sour",
     "image": "/images/sweets/sour_blue_strawberries.jpg"
   },
   {
-    "id": "fizzy-belts",
-    "name": "Fizzy Belts",
-    "category": "fizzy"
-  },
-  {
-    "id": "drumstick-lollies",
-    "name": "Drumstick Lollies",
-    "category": "hard"
-  },
-  {
-    "id": "fizzy-watermelon",
-    "name": "Fizzy Watermelon",
+    "id": "fizzy-watermelon-slices",
+    "name": "Fizzy Watermelon Slices",
     "category": "fizzy",
     "image": "/images/sweets/fizzy_watermelon.jpg"
   },
@@ -151,5 +118,23 @@
     "name": "Terrific Turtles",
     "category": "chocolate",
     "image": "/images/sweets/terrific_turtles.jpg"
+  },
+  {
+    "id": "sour-worms",
+    "name": "Sour Worms",
+    "category": "sour",
+    "image": "/images/sweets/sour_worms.jpg"
+  },
+  {
+    "id": "fizzy-jelly-mix",
+    "name": "Fizzy Jelly Mix",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_jelly.jpg"
+  },
+  {
+    "id": "sour-blue-raspberry-slices",
+    "name": "Sour Blue Raspberry Slices",
+    "category": "sour",
+    "image": "/images/sweets/sour_blue_raspberry.jpg"
   }
 ]
