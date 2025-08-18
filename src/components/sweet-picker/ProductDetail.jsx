@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Sparkles, Package } from 'lucide-react'
+import { Sparkles, Heart } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 import SweetPicker from './SweetPicker'
 import QuantitySelector from './QuantitySelector'
@@ -121,7 +121,7 @@ function ProductDetail({ product, onBack }) {
                   </div>
                 )}
               </div>
-              <Package className="w-12 h-12 text-phlox-400" />
+              <Heart className="w-12 h-12 text-phlox-400" />
             </div>
           </div>
 
