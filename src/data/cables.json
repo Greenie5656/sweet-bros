@@ -34,5 +34,18 @@
     "name": "Blackcurrant Cable", 
     "flavour": "Blackcurrant",
      "image": "/images/cables/blackcurrant_cable.jpg"
+  },
+    {
+    "id": "bubblegum-cable",
+    "name": "Bubblegum Cable", 
+    "flavour": "Bubblegum",
+     "image": "/images/cables/bubblegum_cable.jpg"
+  },
+    {
+    "id": "strawberry-cable",
+    "name": "Strawberry Cable", 
+    "flavour": "Strawberry",
+     "image": "/images/cables/strawberry_cable.jpg"
   }
+  
 ]
