@@ -25,20 +25,27 @@ function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="text-center py-20 lg:py-32">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-gray-800 mb-6 leading-tight">
-              Sweet Bros
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              The sweetest pick & mix experience in town. Build your perfect bag or choose from our amazing collections!
-            </p>
+      {/* Hero Section - ZERO white space, edge to edge */}
+      <section className="text-center">
+        <div className="w-full">
+          {/* Floating Hero Logo - PULLED UP HARD against header */}
+          <div className="flex justify-center -mt-6">
+            <div className="animate-float hover:scale-105 transition-transform duration-300 cursor-pointer drop-shadow-2xl">
+              <img 
+                src="/sweet-bros-logo-hero.png" 
+                alt="Sweet Bros" 
+                className="h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-88 max-w-full object-contain filter drop-shadow-lg hover:drop-shadow-2xl transition-all duration-300"
+              />
+            </div>
           </div>
+          
+          {/* Text directly under logo, minimal space */}
+          <p className="text-base md:text-lg text-gray-600 mb-2 max-w-2xl mx-auto leading-tight px-4 -mt-8">
+            The sweetest pick & mix experience in town. Build your perfect bag or choose from our amazing collections!
+          </p>
 
-          {/* CTA Buttons with Random Colours */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          {/* CTA Buttons with Random Colours - Right under text */}
+          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-2">
             <Link
               to="/shop"
               className={`bg-gradient-to-r ${heroButtonColours.shop.gradient} hover:shadow-lg hover:shadow-${heroButtonColours.shop.bg.split('-')[1]}-300/50 text-white font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-3`}
@@ -56,9 +63,9 @@ function HomePage() {
             </Link>
           </div>
 
-          {/* Features Grid with Random Colours */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center p-6 group">
+          {/* Features Grid with Random Colours - Edge to edge */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto px-4">
+            <div className="text-center p-4 group">
               <div className={`w-16 h-16 bg-gradient-to-br ${featureColours.custom.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3 animate-float shadow-lg`}>
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
@@ -68,7 +75,7 @@ function HomePage() {
               <p className="text-gray-600">Pick exactly what you love from our huge selection</p>
             </div>
 
-            <div className="text-center p-6 group">
+            <div className="text-center p-4 group">
               <div 
                 className={`w-16 h-16 bg-gradient-to-br ${featureColours.ready.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3 animate-float shadow-lg`}
                 style={{animationDelay: '0.5s'}}
@@ -81,7 +88,7 @@ function HomePage() {
               <p className="text-gray-600">Grab our expertly curated themed bags</p>
             </div>
 
-            <div className="text-center p-6 group">
+            <div className="text-center p-4 group">
               <div 
                 className={`w-16 h-16 bg-gradient-to-br ${featureColours.fresh.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3 animate-float shadow-lg`}
                 style={{animationDelay: '1s'}}
@@ -97,15 +104,15 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Quick Stats with Colourful Background */}
-      <section className="bg-gradient-to-r from-phlox-50 via-yellow_green-50 to-dodger_blue-50 py-16 relative overflow-hidden">
+      {/* Quick Stats with Colourful Background - Minimal spacing */}
+      <section className="bg-gradient-to-r from-phlox-50 via-yellow_green-50 to-dodger_blue-50 py-8 relative overflow-hidden">
         {/* Fun floating elements */}
-        <div className="absolute top-4 left-4 text-4xl animate-bounce">🍬</div>
-        <div className="absolute top-8 right-8 text-3xl animate-pulse">🍭</div>
+        <div className="absolute top-4 left-4 text-4xl animate-bounce">🬬</div>
+        <div className="absolute top-8 right-8 text-3xl animate-pulse">🭭</div>
         <div className="absolute bottom-4 left-1/4 text-2xl animate-float">🌈</div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="group">
               <div className={`inline-flex items-center justify-center w-16 h-16 ${statColours.varieties.bg} rounded-full mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                 <Star className="w-8 h-8 text-white" />
@@ -149,8 +156,8 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Fun Call-to-Action Section */}
-      <section className="py-20">
+      {/* Fun Call-to-Action Section - Minimal spacing */}
+      <section className="py-8">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-gradient-to-r from-white to-gray-50 rounded-3xl p-12 shadow-lg border border-gray-100 relative overflow-hidden">
             {/* Decorative elements */}
@@ -170,7 +177,7 @@ function HomePage() {
                 className={`inline-flex items-center gap-3 bg-gradient-to-r ${getRandomColour().gradient} hover:shadow-xl text-white font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1`}
               >
                 <span>Start Your Sweet Journey</span>
-                <div className="text-2xl animate-bounce">🍬</div>
+                <div className="text-2xl animate-bounce">🬬</div>
               </Link>
             </div>
           </div>
