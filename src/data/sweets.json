@@ -136,5 +136,173 @@
     "name": "Sour Blue Raspberry Slices",
     "category": "sour",
     "image": "/images/sweets/sour_blue_raspberry.jpg"
+  },
+  {
+    "id": "baby-dolphins",
+    "name": "Baby Dolphins",
+    "category": "jelly",
+    "image": "/images/sweets/baby_dolphins.jpg"
+  },
+  {
+    "id": "fizzy-ice-pops",
+    "name": "Fizzy Ice Pops",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_ice_pops.jpg"
+  },
+  {
+    "id": "fizzy-gold-bears",
+    "name": "Fizzy Gold Bears",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_gold_bears.jpg"
+  },
+   {
+    "id": "fizzy-strawberries",
+    "name": "Fizzy Strawberries",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzie_strawberries.jpg"
+  },
+   {
+    "id": "sour-apple-belts",
+    "name": "Sour Apple Belts",
+    "category": "sour",
+    "image": "/images/sweets/sour_apple_belts.jpg"
+  },
+  {
+    "id": "sour-strawberry-belts",
+    "name": "Sour Strawberry Belts",
+    "category": "sour",
+    "image": "/images/sweets/sour_strawberry_belts.jpg"
+  },
+  {
+    "id": "jelly-beans",
+    "name": "Jelly Beans",
+    "category": "jelly",
+    "image": "/images/sweets/jelly_beans.jpg"
+  },
+  {
+    "id": "blue-raspberry-bites",
+    "name": "Blue Raspberry Bites",
+    "category": "jelly",
+    "image": "/images/sweets/blue_raspberry_bites.jpg"
+  },
+  {
+    "id": "fizzy-volcanoes",
+    "name": "Fizzy Volcanoes",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_volcanoes.jpg"
+  },
+  {
+    "id": "fizzy-blue=raspberry-bites",
+    "name": "Fizzy Raspberry Bites",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_blue_raspberry_bites.jpg"
+  },
+  {
+    "id": "white_jazzies",
+    "name": "White Jazzies",
+    "category": "chocolate",
+    "image": "/images/sweets/white_jazzies.jpg"
+  },
+  {
+    "id": "strawberry_pencil_bites",
+    "name": "Strawberry Pencil Bites",
+    "category": "jelly",
+    "image": "/images/sweets/strawberry_pencil_bites.jpg"
+  },
+  {
+    "id": "sour-strawberry-pencil-bites",
+    "name": "Sour Strawberry Pencil Bites",
+    "category": "sour",
+    "image": "/images/sweets/sour_strawberry_pencil_bites.jpg"
+  },
+  {
+    "id": "giant-strawberries",
+    "name": "Giant Strawberries",
+    "category": "jelly",
+    "image": "/images/sweets/giant_strawberries.jpg"
+  },
+  {
+    "id": "rhubarb-&-custard",
+    "name": "Rhubarb & Custard",
+    "category": "jelly",
+    "image": "/images/sweets/rhubarb_&_custard.jpg"
+  },
+  {
+    "id": "fizzy-cherry-cola-bottles",
+    "name": "Fizzy Cherry Cola Bottles",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_cherry_cola_bottles.jpg"
+  },
+  {
+    "id": "fizzy-bubblegum-bottles",
+    "name": "Fizzy Bubblegum Bottles",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_bubblegum_bottles.jpg"
+  },
+  {
+    "id": "chocolate-ice-cream-cones",
+    "name": "Chocolate Ice Cream Cones",
+    "category": "chocolate",
+    "image": "/images/sweets/chocolaate_ice_cream_cones.jpg"
+  },
+  {
+    "id": "fizzy-peaches",
+    "name": "Fizzy Peaches",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_peaches.jpg"
+  },
+  {
+    "id": "strawberry-milkshakes",
+    "name": "Strawberry Milkshakes",
+    "category": "jelly",
+    "image": "/images/sweets/strawberry_milkshakes.jpg"
+  },
+  {
+    "id": "tongue-painters",
+    "name": "Tongue Painters",
+    "category": "jelly",
+    "image": "/images/sweets/tongue_painters.jpg"
+  },
+  {
+    "id": "sour-apples",
+    "name": "Sour Apples",
+    "category": "sour",
+    "image": "/images/sweets/sour_apples.jpg"
+  },
+  {
+    "id": "juicy-red-lips",
+    "name": "Juicy Red Lips",
+    "category": "jelly",
+    "image": "/images/sweets/juicy_red_lips.jpg"
+  },
+  {
+    "id": "teeth-&-lips",
+    "name": "Teeth & Lips",
+    "category": "jelly",
+    "image": "/images/sweets/teeth_&_lips.jpg"
+  },
+  {
+    "id": "sour-lime-slices",
+    "name": "Sour Lime Slices",
+    "category": "sour",
+    "image": "/images/sweets/sour_lime_slices.jpg"
+  },
+  {
+    "id": "fizzy-strawberry-slices",
+    "name": "Fizzy Strawberry Slices",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_strawberry_slices.jpg"
+  },
+  {
+    "id": "fizzy-cherry-slices",
+    "name": "Fizzy Cherry Slices",
+    "category": "fizzy",
+    "image": "/images/sweets/fizzy_cherry_slices.jpg"
+  },
+  {
+    "id": "twist-kisses",
+    "name": "Twist Kisses",
+    "category": "jelly",
+    "image": "/images/sweets/twist_kisses.jpg"
   }
 ]

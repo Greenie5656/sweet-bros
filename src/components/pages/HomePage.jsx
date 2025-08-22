@@ -23,8 +23,36 @@ function HomePage() {
     quality: getItemColour('stat-quality')
   }
 
+  // Function to go directly to custom sweet bag
+  const goToCustomBag = () => {
+    // This will navigate to shop and then directly to the custom product
+    window.location.href = '/shop#custom-sweet-bag'
+  }
+
   return (
     <div className="min-h-screen">
+      {/* Add CSS animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-10px) rotate(1deg); }
+          66% { transform: translateY(-5px) rotate(-1deg); }
+        }
+        
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-bounce-slow {
+          animation: bounce 2s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* Hero Section - ZERO white space, edge to edge */}
       <section className="text-center">
         <div className="w-full">
@@ -39,9 +67,9 @@ function HomePage() {
             </div>
           </div>
           
-          {/* Text directly under logo, minimal space */}
-          <p className="text-base md:text-lg text-gray-600 mb-2 max-w-2xl mx-auto leading-tight px-4 -mt-8">
-            The sweetest pick & mix experience in town. Build your perfect bag or choose from our amazing collections!
+          {/* Text directly under logo, with more space */}
+          <p className="text-base md:text-lg text-gray-600 mb-6 max-w-2xl mx-auto leading-tight px-4 -mt-8">
+            Welcome to <span className={`font-bold ${getItemColour('sweet-bros').text}`}>Sweet Bros</span> – where every <span className={`font-semibold ${getItemColour('treat').text}`}>treat</span> is made with a big scoop of <span className="font-bold text-red-600">brotherly love</span>!
           </p>
 
           {/* CTA Buttons with Random Colours - Right under text */}
@@ -54,13 +82,13 @@ function HomePage() {
               Start Shopping
             </Link>
             
-            <Link
-              to="/shop"
+            <button
+              onClick={goToCustomBag}
               className={`bg-gradient-to-r ${heroButtonColours.build.gradient} hover:shadow-lg hover:shadow-${heroButtonColours.build.bg.split('-')[1]}-300/50 text-white font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-3`}
             >
               <Sparkles className="w-6 h-6" />
               Build Your Own
-            </Link>
+            </button>
           </div>
 
           {/* Features Grid with Random Colours - Edge to edge */}
@@ -106,9 +134,9 @@ function HomePage() {
 
       {/* Quick Stats with Colourful Background - Minimal spacing */}
       <section className="bg-gradient-to-r from-phlox-50 via-yellow_green-50 to-dodger_blue-50 py-8 relative overflow-hidden">
-        {/* Fun floating elements */}
-        <div className="absolute top-4 left-4 text-4xl animate-bounce">🬬</div>
-        <div className="absolute top-8 right-8 text-3xl animate-pulse">🭭</div>
+        {/* Fun floating elements - FIXED BOUNCING */}
+        <div className="absolute top-4 left-4 text-4xl animate-bounce-slow">🍬</div>
+        <div className="absolute top-8 right-8 text-3xl animate-pulse">🍭</div>
         <div className="absolute bottom-4 left-1/4 text-2xl animate-float">🌈</div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -177,7 +205,7 @@ function HomePage() {
                 className={`inline-flex items-center gap-3 bg-gradient-to-r ${getRandomColour().gradient} hover:shadow-xl text-white font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1`}
               >
                 <span>Start Your Sweet Journey</span>
-                <div className="text-2xl animate-bounce">🬬</div>
+                <div className="text-2xl animate-bounce-slow">🍬</div>
               </Link>
             </div>
           </div>

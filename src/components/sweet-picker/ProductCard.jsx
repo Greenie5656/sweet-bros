@@ -13,17 +13,18 @@ function ProductCard({ product, onClick }) {
       {/* Larger Image Container - Taking up more space */}
       <div className="relative h-56 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
         
-        {/* Shopify Product Image - Full visibility, larger */}
+        {/* Shopify Product Image or Fallback */}
         {product.image ? (
           <img 
             src={product.image} 
             alt={product.title}
-            className="w-full h-full object-contain sm:object-cover md:group-hover:scale-110 group-hover:scale-105 transition-transform duration-700 brightness-105 contrast-110 saturate-110"
+            className="w-full h-full object-contain sm:object-cover md:group-hover:scale-110 group-hover:scale-105 transition-transform duration-700"
           />
         ) : (
+          // Only show gradient background when there's NO image
           <div className={`absolute inset-0 bg-gradient-to-br ${productColour.gradient} flex items-center justify-center`}>
             <div className="text-8xl text-white drop-shadow-lg">
-              {product.customType === 'cables' ? '🪱' : '🍬'}
+              {product.customType === 'cables' ? '🪱' : '🬬'}
             </div>
           </div>
         )}
@@ -47,9 +48,7 @@ function ProductCard({ product, onClick }) {
           </div>
         )}
 
-        {/* Bright colored frame effect */}
-        <div className={`absolute inset-0 border-4 border-transparent group-hover:border-opacity-30 transition-all duration-300`} 
-             style={{borderColor: `rgb(var(--${productColour.bg.replace('bg-', '').replace('-500', '')}-400))`}} />
+        {/* NO colored frame effect on hover - removed this line completely */}
         
         {/* Bottom accent stripe - brighter */}
         <div className={`absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r ${productColour.gradient} shadow-lg`} />
@@ -84,7 +83,7 @@ function ProductCard({ product, onClick }) {
         </div>
       </div>
 
-      {/* Fun animated border on hover */}
+      {/* Fun animated border on hover - kept but simplified */}
       <div className={`absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:${productColour.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none`} />
       
       {/* Subtle glow effect */}

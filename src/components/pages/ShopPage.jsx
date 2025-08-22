@@ -14,48 +14,48 @@ function ShopPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  // Your actual Shopify collection handles - with correct handle!
+  // Your actual Shopify collection handles - MUST match what's in Shopify!
   const collectionHandles = [
     'pick-mix-bags',
-    'build-your-own-pick-n-mix-bag', // Correct handle from Shopify
+    'build-your-own-pick-n-mix-bag',
     'cable-bags', 
-    'themed-picks',
-    'mystery-boxes',
+    'themed-picks',        // Keep original Shopify handle
+    'mystery-boxes',       // Keep original Shopify handle
     'party-supplies',
     'bundles'
   ]
 
-  // Collection display config
+  // Collection display config - Custom names for display
   const collectionConfig = {
     'pick-mix-bags': {
       title: 'Pick & Mix Bags',
       description: 'Pre-mixed themed bags ready to go',
       color: 'from-phlox-400 to-phlox-600'
     },
-    'build-your-own-pick-n-mix-bag': { // Updated to correct handle
+    'build-your-own-pick-n-mix-bag': {
       title: 'Build Your Own Bag',
-      description: 'Create your perfect 500g sweet mix',
+      description: 'Create your own perfect 500g Sweet Bros pick n mix bag',
       color: 'from-yellow_green-400 to-yellow_green-600',
       isCustom: true
     },
     'cable-bags': {
       title: 'Cable Bags', 
-      description: 'Stretchy cable sweets in different flavours',
+      description: 'Giant cables in a variety of flavours',
       color: 'from-red-400 to-red-600'
     },
-    'themed-picks': {
-      title: 'Themed Picks',
-      description: 'Special curated mixes by our team',
+    'themed-picks': {          // Shopify handle = themed-picks
+      title: 'Themed Mixes',    // Your custom display name
+      description: 'Specially selected mixes by our little CEOs',
       color: 'from-dodger_blue-400 to-dodger_blue-600'
     },
-    'mystery-boxes': {
-      title: 'Mystery Boxes',
-      description: 'Surprise yourself with our mystery selections', 
+    'mystery-boxes': {         // Shopify handle = mystery-boxes  
+      title: 'Treat Boxes',     // Your custom display name
+      description: 'Sweet tooth activated, grab a treat box loaded with goodies for every craving', 
       color: 'from-purple-400 to-purple-600'
     },
     'party-supplies': {
       title: 'Party Supplies',
-      description: 'Perfect for parties and events',
+      description: 'Perfect for parties, events and special occasions',
       color: 'from-orange-400 to-orange-600'
     },
     'bundles': {
@@ -70,7 +70,6 @@ function ShopPage() {
       try {
         setLoading(true)
         const data = await getMultipleCollections(collectionHandles)
-        
         
         const collectionsData = collectionHandles.map((handle, index) => {
           const shopifyCollection = data[`collection${index}`]
@@ -92,8 +91,11 @@ function ShopPage() {
           return null
         }).filter(Boolean)
         
-       
         setCollections(collectionsData)
+        
+        // Check if we should go directly to custom bag
+        checkForDirectNavigation(collectionsData)
+        
       } catch (err) {
         console.error('Error fetching collections:', err)
         setError('Failed to load collections')
@@ -105,7 +107,22 @@ function ShopPage() {
     fetchCollections()
   }, [])
 
-  const handleCollectionClick = async (collection) => {
+  // Check for direct navigation to custom bag
+  const checkForDirectNavigation = (collectionsData) => {
+    const hash = window.location.hash
+    if (hash === '#custom-sweet-bag') {
+      // Find the custom collection
+      const customCollection = collectionsData.find(c => c.handle === 'build-your-own-pick-n-mix-bag')
+      if (customCollection) {
+        // Navigate directly to the custom bag
+        handleCollectionClick(customCollection, true) // true = go straight to product
+      }
+      // Clear the hash
+      window.history.replaceState(null, null, '/shop')
+    }
+  }
+
+  const handleCollectionClick = async (collection, goDirectToProduct = false) => {
     try {
       setLoading(true)
       
@@ -120,7 +137,7 @@ function ShopPage() {
           customProducts = [{
             id: 'custom-sweet-bag',
             title: 'Build Your Own Sweet Bag (500g)',
-            description: 'Pick 5-10 of your favorite sweets for a custom 500g bag',
+            description: 'Pick 10-20 of your favourite sweets for a custom 500g bag',
             price: 7.50,
             image: '/images/custom-bag-placeholder.jpg', // Use your local image
             variantId: null,
@@ -131,6 +148,14 @@ function ShopPage() {
         }
         
         setProducts(customProducts)
+        
+        // If going direct to product (from homepage), skip products grid
+        if (goDirectToProduct && customProducts.length > 0) {
+          setSelectedCollection(collection)
+          setSelectedProduct(customProducts[0])
+          setCurrentView('detail')
+          return
+        }
       } else {
         // For regular collections, fetch from Shopify
         const data = await getCollectionByHandle(collection.handle)
