@@ -4,7 +4,6 @@ import sweetsData from '../../data/sweets.json'
 import cablesData from '../../data/cables.json'
 import { getItemColour } from '../../utils/colourHelpers'
 
-
 function SweetPicker({ type = 'sweets', onSelectionChange }) {
   const [selectedItems, setSelectedItems] = useState([])
   
@@ -12,8 +11,8 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
   const config = {
     sweets: {
       data: sweetsData,
-      maxItems: 10,
-      minItems: 5,
+      maxItems: 20,
+      minItems: 10,
       title: 'Choose Your Sweets',
       subtitle: 'Pick your favourites for the perfect mix'
     },
@@ -103,27 +102,24 @@ function SweetPicker({ type = 'sweets', onSelectionChange }) {
                 }
               `}
             >
-              {/* Background with Random Colour */}
-              <div className={`aspect-square bg-gradient-to-br ${itemColour.gradient} p-4 flex flex-col items-center justify-center text-white relative overflow-hidden`}>
+              {/* Background - Only show when NO image */}
+              <div className={`aspect-square ${item.image ? 'bg-gray-100' : `bg-gradient-to-br ${itemColour.gradient}`} p-4 flex flex-col items-center justify-center text-white relative overflow-hidden`}>
                 
-                {/* Real Image or Emoji Fallback */}
+                {/* Real Image (NO overlay) or Emoji Fallback */}
                 {item.image ? (
                   <img 
                     src={item.image} 
                     alt={item.name}
-                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 ) : (
                   <div className="text-4xl mb-2">
-                    {type === 'cables' ? '🪱' : '�'}
+                    {type === 'cables' ? '🪱' : '🬬'}
                   </div>
                 )}
                 
-                {/* Overlay for text readability */}
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                
-                {/* Item Name */}
-                <div className="absolute top-3 left-3 right-12 z-10 text-left text-sm font-bold leading-tight text-white drop-shadow-lg bg-black bg-opacity-40 rounded-lg px-2 py-1">
+                {/* Item Name - Only show overlay behind text for readability */}
+                <div className="absolute top-3 left-3 right-12 z-10 text-left text-sm font-bold leading-tight text-white drop-shadow-lg bg-black bg-opacity-50 rounded-lg px-2 py-1">
                   {item.name}
                 </div>
 
