@@ -13,7 +13,7 @@ function Cart() {
   const handleCheckoutSuccess = (cart) => {
     console.log('Checkout successful! Cart ID:', cart.id)
     // Clear local cart since order is now in Shopify
-    localStorage.removeItem('sweetBrosCart')
+    // localStorage.removeItem('sweetBrosCart')
     // Note: User will be redirected to Shopify, so this might not execute
   }
 

@@ -14,6 +14,7 @@ function CheckoutButton({ cartItems, onSuccess, onError }) {
       console.log('Processing item:', item)
       console.log('Item isCustom:', item.isCustom)
       console.log('Item variantId:', item.variantId)
+      console.log('Item totalTubs:', item.totalTubs)
       
       if (item.isCustom) {
         console.log('This is a custom item')
@@ -63,6 +64,7 @@ function CheckoutButton({ cartItems, onSuccess, onError }) {
       } else {
         console.log('This is a regular item, using existing variant ID:', item.variantId)
         // Regular Shopify products - use their existing variant ID
+        // Party tubs with variants will have the correct variant ID already set
         lineItems.push({
           merchandiseId: item.variantId,
           quantity: item.quantity

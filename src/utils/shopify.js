@@ -101,7 +101,7 @@ export const getMultipleCollections = async (handles) => {
   return shopifyFetch(query)
 }
 
-// Get individual sweets for custom builders (from "All Products" collection)
+// Get individual sweets for custom builders
 export const getAllSweets = async () => {
   const query = `
     query getAllProducts {
@@ -136,6 +136,46 @@ export const getAllSweets = async () => {
   `
   
   return shopifyFetch(query)
+}
+
+// Get all variants for a specific product (for party tubs)
+export const getProductWithVariants = async (productId) => {
+  const query = `
+    query getProductVariants($id: ID!) {
+      product(id: $id) {
+        id
+        title
+        description
+        variants(first: 50) {
+          edges {
+            node {
+              id
+              title
+              price {
+                amount
+                currencyCode
+              }
+              selectedOptions {
+                name
+                value
+              }
+              availableForSale
+            }
+          }
+        }
+      }
+    }
+  `
+  
+  const gqlProductId = `gid://shopify/Product/${productId}`
+  
+  try {
+    const response = await shopifyFetch(query, { id: gqlProductId })
+    return response.product
+  } catch (error) {
+    console.error(`Error fetching variants for product ${productId}:`, error)
+    throw error
+  }
 }
 
 // Get variant ID from product ID
@@ -176,10 +216,6 @@ export const getProductVariantId = async (productId) => {
     throw error
   }
 }
-
-// ===================
-// CART API FUNCTIONS
-// ===================
 
 // Create a new cart with line items
 export const createCart = async (lineItems) => {
