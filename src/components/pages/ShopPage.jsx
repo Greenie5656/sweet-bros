@@ -4,6 +4,7 @@ import CollectionGrid from '../sweet-picker/CollectionGrid'
 import ProductGrid from '../sweet-picker/ProductGrid'
 import ProductDetail from '../sweet-picker/ProductDetail'
 import { getMultipleCollections, getCollectionByHandle } from '../../utils/shopify'
+import { useScrollToTop } from '../../utils/scrollHelpers'
 
 function ShopPage() {
   const [currentView, setCurrentView] = useState('collections')
@@ -13,14 +14,17 @@ function ShopPage() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  
+  // Use our enhanced scroll hook
+  const { scrollWithDelay } = useScrollToTop()
 
   // Your actual Shopify collection handles - MUST match what's in Shopify!
   const collectionHandles = [
     'pick-mix-bags',
     'build-your-own-pick-n-mix-bag',
     'cable-bags', 
-    'themed-picks',        // Keep original Shopify handle
-    'mystery-boxes',       // Keep original Shopify handle
+    'themed-picks',
+    'mystery-boxes',
     'party-supplies',
     'bundles'
   ]
@@ -43,13 +47,13 @@ function ShopPage() {
       description: 'Giant cables in a variety of flavours',
       color: 'from-red-400 to-red-600'
     },
-    'themed-picks': {          // Shopify handle = themed-picks
-      title: 'Themed Mixes',    // Your custom display name
+    'themed-picks': {
+      title: 'Themed Mixes',
       description: 'Specially selected mixes by our little CEOs',
       color: 'from-dodger_blue-400 to-dodger_blue-600'
     },
-    'mystery-boxes': {         // Shopify handle = mystery-boxes  
-      title: 'Treat Boxes',     // Your custom display name
+    'mystery-boxes': {
+      title: 'Treat Boxes',
       description: 'Sweet tooth activated, grab a treat box loaded with goodies for every craving', 
       color: 'from-purple-400 to-purple-600'
     },
@@ -111,13 +115,10 @@ function ShopPage() {
   const checkForDirectNavigation = (collectionsData) => {
     const hash = window.location.hash
     if (hash === '#custom-sweet-bag') {
-      // Find the custom collection
       const customCollection = collectionsData.find(c => c.handle === 'build-your-own-pick-n-mix-bag')
       if (customCollection) {
-        // Navigate directly to the custom bag
-        handleCollectionClick(customCollection, true) // true = go straight to product
+        handleCollectionClick(customCollection, true)
       }
-      // Clear the hash
       window.history.replaceState(null, null, '/shop')
     }
   }
@@ -125,9 +126,6 @@ function ShopPage() {
   const handleCollectionClick = async (collection, goDirectToProduct = false) => {
     try {
       setLoading(true)
-      
-      // Auto-scroll to top when entering products view
-      window.scrollTo({ top: 0, behavior: 'smooth' })
       
       // For custom collections, create frontend-only products
       if (collection.isCustom) {
@@ -139,7 +137,7 @@ function ShopPage() {
             title: 'Build Your Own Sweet Bag (500g)',
             description: 'Pick 10-20 of your favourite sweets for a custom 500g bag',
             price: 7.50,
-            image: '/images/custom-bag-placeholder.jpg', // Use your local image
+            image: '/images/custom-bag-placeholder.jpg',
             variantId: null,
             collection: collection.handle,
             isCustom: true,
@@ -149,13 +147,19 @@ function ShopPage() {
         
         setProducts(customProducts)
         
-        // If going direct to product (from homepage), skip products grid
+        // Update state first, then scroll after DOM updates
+        setSelectedCollection(collection)
+        
         if (goDirectToProduct && customProducts.length > 0) {
-          setSelectedCollection(collection)
           setSelectedProduct(customProducts[0])
           setCurrentView('detail')
-          return
+        } else {
+          setCurrentView('products')
         }
+        
+        // Scroll after state updates with delay for DOM render
+        scrollWithDelay(300)
+        return
       } else {
         // For regular collections, fetch from Shopify
         const data = await getCollectionByHandle(collection.handle)
@@ -179,19 +183,17 @@ function ShopPage() {
               title: 'Build Your Own Cable Bag',
               description: 'Pick any 4 cable flavours you love most',
               price: 5.00,
-              image: '/images/custom-cable-placeholder.jpg', // Use your local image
+              image: '/images/custom-cable-placeholder.jpg',
               variantId: null,
               collection: collection.handle,
               isCustom: true,
               customType: 'cables'
             }
             
-            // Check if custom cable product already exists in Shopify data
             const hasCustom = productsData.some(p => p.title.includes('Build Your Own'))
             if (!hasCustom) {
               productsData.push(customCableProduct)
             } else {
-              // Update existing custom product with our logic
               const customIndex = productsData.findIndex(p => p.title.includes('Build Your Own'))
               if (customIndex >= 0) {
                 productsData[customIndex] = { ...productsData[customIndex], ...customCableProduct }
@@ -203,38 +205,51 @@ function ShopPage() {
         }
       }
       
+      // Update state first
       setSelectedCollection(collection)
       setCurrentView('products')
+      
     } catch (err) {
       console.error('Error fetching products:', err)
       setError('Failed to load products')
     } finally {
       setLoading(false)
+      // Scroll after loading is complete and DOM has updated
+      setTimeout(() => {
+        scrollWithDelay(200)
+      }, 100)
     }
   }
 
   const handleProductClick = (product) => {
-    // Auto-scroll to top when entering product detail view
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Update state first
     setSelectedProduct(product)
     setCurrentView('detail')
+    
+    // Scroll after state update
+    scrollWithDelay(250)
   }
 
   const handleBackToCollections = () => {
-    // Auto-scroll to top when going back to collections
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Update state first
     setCurrentView('collections')
     setSelectedCollection(null)
     setProducts([])
+    
+    // Scroll after state update
+    scrollWithDelay(200)
   }
 
   const handleBackToProducts = () => {
-    // Auto-scroll to top when going back to products
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Update state first
     setCurrentView('products')
     setSelectedProduct(null)
+    
+    // Scroll after state update
+    scrollWithDelay(200)
   }
 
+  // Loading state for initial collections load
   if (loading && currentView === 'collections') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 flex items-center justify-center">
@@ -266,18 +281,18 @@ function ShopPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
-      {/* Fun Floating Back Button */}
+      {/* Enhanced Back Button with better mobile tap targets */}
       {currentView !== 'collections' && (
         <button
           onClick={currentView === 'products' ? handleBackToCollections : handleBackToProducts}
-          className="fixed bottom-6 left-6 bg-gradient-to-r from-phlox-500 to-phlox-600 hover:from-phlox-600 hover:to-phlox-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl z-50 flex items-center gap-2 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
+          className="fixed bottom-6 left-6 bg-gradient-to-r from-phlox-500 to-phlox-600 hover:from-phlox-600 hover:to-phlox-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl z-50 flex items-center gap-2 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 min-h-[56px] min-w-[56px]"
           disabled={loading}
+          style={{ WebkitTapHighlightColor: 'transparent' }}
         >
           <ArrowLeft className="w-5 h-5" />
           <span className="hidden sm:inline font-medium">
             {currentView === 'products' ? 'Collections' : 'Products'}
           </span>
-          {/* Fun little indicator dot */}
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow_green-400 rounded-full animate-pulse"></div>
         </button>
       )}

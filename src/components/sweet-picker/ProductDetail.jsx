@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Sparkles, Heart, Star } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 import SweetPicker from './SweetPicker'
 import QuantitySelector from './QuantitySelector'
 import PartyTubSelector from './PartyTubSelector'
 import { getItemColour } from '../../utils/colourHelpers'
+import { getProductWithVariants } from '../../utils/shopify'
 
 function ProductDetail({ product, onBack }) {
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(product.minQuantity || 1)
   const [totalPrice, setTotalPrice] = useState(product.price)
   const [selectedSweets, setSelectedSweets] = useState([])
+  const [productVariants, setProductVariants] = useState([])
+  const [variantsLoaded, setVariantsLoaded] = useState(false)
   
   // Get consistent color for this product
   const productColour = getItemColour(product.id)
@@ -20,35 +23,75 @@ function ProductDetail({ product, onBack }) {
                            product?.title?.toLowerCase().includes('party') ||
                            product?.title?.toLowerCase().includes('tub')
 
-  // Handle party tub cart additions (different format)
+  // Load variants for party tub products
+  useEffect(() => {
+    const loadVariants = async () => {
+      if (isPartyTubProduct) {
+        try {
+          const productId = import.meta.env.VITE_PARTY_TUBS_PRODUCT_ID
+          
+          if (productId) {
+            const productData = await getProductWithVariants(productId)
+            
+            if (productData && productData.variants) {
+              const variants = productData.variants.edges.map(edge => edge.node)
+              setProductVariants(variants)
+            }
+          }
+        } catch (error) {
+          console.error('Error loading product variants:', error)
+        } finally {
+          setVariantsLoaded(true)
+        }
+      } else {
+        setVariantsLoaded(true)
+      }
+    }
+
+    loadVariants()
+  }, [product, isPartyTubProduct])
+
+  // Handle party tub cart additions
   const handlePartyTubAddToCart = (cartItem) => {
+    // Find the correct variant for the selected quantity
+    const correctVariant = productVariants.find(variant => {
+      const quantityString = `${cartItem.totalTubs} Tubs`
+      
+      return variant.title === quantityString ||
+             variant.selectedOptions.some(option => 
+               option.value === quantityString || 
+               option.value === cartItem.totalTubs.toString()
+             )
+    })
+
+    if (!correctVariant) {
+      alert('Sorry, that quantity is not available. Please try a different amount.')
+      return
+    }
+
     addToCart({
-      id: cartItem.id,
-      title: cartItem.title,
-      price: cartItem.price, // This is the total price
+      id: `${product.id}-variant-${correctVariant.id}`,
+      title: `${product.title} (${cartItem.totalTubs} tubs)`,
+      price: parseFloat(correctVariant.price.amount),
       image: cartItem.image,
-      variantId: cartItem.variantId,
+      variantId: correctVariant.id,
       isCustom: false,
       totalTubs: cartItem.totalTubs
-    }, 1) // Always quantity 1 for bundles
+    }, 1)
   }
 
   // Handle quantity/price changes from QuantitySelector
   const handleQuantityChange = (data) => {
     if (typeof data === 'number') {
-      // Old format - just quantity
       setQuantity(data)
       setTotalPrice(product.price * data)
     } else {
-      // New format - object with quantity and totalPrice
       setQuantity(data.quantity)
       setTotalPrice(data.totalPrice)
     }
   }
 
   const handleAddToCart = () => {
-    console.log('Adding to cart:', { product, quantity, selectedSweets, totalPrice })
-    
     // For custom products, validate selections
     if (product.isCustom) {
       const minRequired = product.customType === 'cables' ? 4 : 10
@@ -88,13 +131,12 @@ function ProductDetail({ product, onBack }) {
     addToCart({
       id: product.isCustom ? `${product.id}-${Date.now()}` : product.id,
       title: customTitle,
-      price: effectivePrice, // Use calculated price per unit
+      price: effectivePrice,
       image: product.image,
       variantId: product.variantId,
       customSweets: product.isCustom && product.customType !== 'cables' ? selectedSweets : null,
       customCables: product.isCustom && product.customType === 'cables' ? selectedSweets : null,
       isCustom: product.isCustom || false,
-      // Store original pricing info for complex products
       originalPrice: product.price,
       totalPrice: totalPrice,
       usesDynamicPricing: usesDynamicPricing
@@ -136,7 +178,7 @@ function ProductDetail({ product, onBack }) {
             ) : (
               <div className="flex items-center justify-center h-full">
                 <div className="text-9xl">
-                  {product.customType === 'cables' ? '🪱' : '🍬'}
+                  {product.customType === 'cables' ? '🪱' : '🬬'}
                 </div>
               </div>
             )}
@@ -207,11 +249,20 @@ function ProductDetail({ product, onBack }) {
                 <span>Configure Your Party Order</span>
                 <div className={`w-2 h-2 ${productColour.bg} rounded-full opacity-60`} />
               </h3>
-              <PartyTubSelector 
-                product={product}
-                onAddToCart={handlePartyTubAddToCart}
-                productColour={productColour}
-              />
+              
+              {!variantsLoaded ? (
+                <div className="text-center py-8">
+                  <div className="text-4xl mb-2 animate-bounce">🎉</div>
+                  <div className="text-gray-600">Loading party options...</div>
+                </div>
+              ) : (
+                <PartyTubSelector 
+                  product={product}
+                  onAddToCart={handlePartyTubAddToCart}
+                  productColour={productColour}
+                  variants={productVariants}
+                />
+              )}
             </div>
           ) : (
             <>
