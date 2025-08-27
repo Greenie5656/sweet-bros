@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Sparkles, Heart, Star } from 'lucide-react'
+import { Sparkles, Heart, Star, ShoppingBag } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 import SweetPicker from './SweetPicker'
 import QuantitySelector from './QuantitySelector'
@@ -53,7 +53,6 @@ function ProductDetail({ product, onBack }) {
 
   // Handle party tub cart additions
   const handlePartyTubAddToCart = (cartItem) => {
-    // Find the correct variant for the selected quantity
     const correctVariant = productVariants.find(variant => {
       const quantityString = `${cartItem.totalTubs} Tubs`
       
@@ -80,7 +79,7 @@ function ProductDetail({ product, onBack }) {
     }, 1)
   }
 
-  // Handle quantity/price changes from QuantitySelector
+  // Handle quantity/price changes
   const handleQuantityChange = (data) => {
     if (typeof data === 'number') {
       setQuantity(data)
@@ -108,14 +107,13 @@ function ProductDetail({ product, onBack }) {
       }
     }
 
-    // Create a custom product title that includes the selections
+    // Create custom title
     let customTitle = product.title
     if (product.isCustom && selectedSweets.length > 0) {
       const sweetNames = selectedSweets.map(s => s.name).join(', ')
       customTitle = `${product.title} (${sweetNames})`
     }
 
-    // For party products with dynamic pricing, adjust the title
     const usesDynamicPricing = product?.collection === 'party-supplies' || 
                               product?.title?.toLowerCase().includes('party') ||
                               product?.title?.toLowerCase().includes('tub')
@@ -124,10 +122,8 @@ function ProductDetail({ product, onBack }) {
       customTitle = `${product.title} (${quantity} tubs)`
     }
 
-    // Calculate the effective price per unit for the cart
     const effectivePrice = totalPrice / quantity
 
-    // Add the product to cart
     addToCart({
       id: product.isCustom ? `${product.id}-${Date.now()}` : product.id,
       title: customTitle,
@@ -142,10 +138,8 @@ function ProductDetail({ product, onBack }) {
       usesDynamicPricing: usesDynamicPricing
     }, quantity)
 
-    // Show success feedback
     alert(`Added ${quantity} x ${customTitle} to cart! Total: £${totalPrice.toFixed(2)}`)
     
-    // Reset selections for custom products
     if (product.isCustom) {
       setSelectedSweets([])
     }
@@ -162,30 +156,37 @@ function ProductDetail({ product, onBack }) {
 
   return (
     <div className="max-w-6xl mx-auto">
-      {/* Subtle colored header strip */}
-      <div className={`h-2 bg-gradient-to-r ${productColour.gradient} rounded-full mb-8 opacity-60 shadow-sm`} />
+      {/* Simple colored header strip */}
+      <div className="relative mb-8">
+        <div className={`h-3 bg-gradient-to-r ${productColour.gradient} rounded-full shadow-md opacity-70`} />
+        <div className={`absolute -top-1 left-8 w-5 h-5 ${productColour.bg} rounded-full border-2 border-white shadow-sm animate-bounce`} />
+      </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        {/* Product Image */}
+        {/* Product Image with simple border */}
         <div className="relative">
-          <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl overflow-hidden shadow-xl relative">
+          <div 
+            className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl overflow-hidden shadow-xl relative border-4 transition-colors"
+            style={{
+              borderColor: productColour.bg === 'bg-phlox-500' ? '#dd18fe' : 
+                          productColour.bg === 'bg-red-500' ? '#ff000c' : 
+                          productColour.bg === 'bg-yellow_green-500' ? '#9fd600' : 
+                          productColour.bg === 'bg-dodger_blue-500' ? '#0495ff' : '#dd18fe'
+            }}
+          >
             {product.image ? (
               <img 
                 src={product.image} 
                 alt={product.title}
-                className="w-full h-full object-contain sm:object-cover"
+                className="w-full h-full object-contain sm:object-cover hover:scale-105 transition-transform duration-500"
               />
             ) : (
               <div className="flex items-center justify-center h-full">
-                <div className="text-9xl">
+                <div className="text-9xl drop-shadow-lg">
                   {product.customType === 'cables' ? '🪱' : '🬬'}
                 </div>
               </div>
             )}
-            
-            {/* Subtle corner accent */}
-            <div className={`absolute top-0 right-0 w-0 h-0 border-r-[60px] border-t-[60px] border-r-transparent opacity-20`} 
-                 style={{borderTopColor: `rgb(var(--${productColour.bg.replace('bg-', '').replace('-500', '')}-400))`}} />
           </div>
           
           {product.isCustom && (
@@ -194,21 +195,15 @@ function ProductDetail({ product, onBack }) {
               <span>Customizable</span>
             </div>
           )}
-          
-          {/* Fun floating dots */}
-          <div className={`absolute bottom-8 left-8 w-4 h-4 ${productColour.bg} rounded-full opacity-60 animate-pulse shadow-lg`} />
-          <div className={`absolute bottom-12 left-12 w-2 h-2 ${productColour.bg.replace('500', '300')} rounded-full opacity-80 animate-pulse shadow-lg`} style={{animationDelay: '0.7s'}} />
         </div>
 
         {/* Product Info */}
         <div className="space-y-8">
           <div>
-            {/* Title with subtle color accent */}
             <div className="relative mb-4">
               <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">
                 {product.title}
               </h1>
-              {/* Small colored underline */}
               <div className={`h-1.5 w-16 ${productColour.bg} rounded-full mt-3 opacity-70 shadow-sm`} />
             </div>
             
@@ -217,8 +212,16 @@ function ProductDetail({ product, onBack }) {
             </p>
           </div>
 
-          {/* Price with themed styling */}
-          <div className={`bg-gradient-to-r from-gray-50 to-${productColour.bg.replace('bg-', '').replace('-500', '')}-50 rounded-2xl p-6 border-l-4 ${productColour.bg.replace('500', '400')} shadow-sm`}>
+          {/* Price section with colorful border */}
+          <div 
+            className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 border-4 transition-colors shadow-sm"
+            style={{
+              borderColor: productColour.bg === 'bg-phlox-500' ? '#e348fe' : 
+                          productColour.bg === 'bg-red-500' ? '#ff333d' : 
+                          productColour.bg === 'bg-yellow_green-500' ? '#c4ff12' : 
+                          productColour.bg === 'bg-dodger_blue-500' ? '#37acff' : '#e348fe'
+            }}
+          >
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-4xl font-extrabold text-gray-800">
@@ -242,12 +245,12 @@ function ProductDetail({ product, onBack }) {
             </div>
           </div>
 
-          {/* Party Tub Selector (for party products) */}
+          {/* Party Tub Selector */}
           {isPartyTubProduct ? (
-            <div>
+            <div className="border-4 border-orange-200 rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50">
               <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                 <span>Configure Your Party Order</span>
-                <div className={`w-2 h-2 ${productColour.bg} rounded-full opacity-60`} />
+                <div className={`w-2 h-2 ${productColour.bg} rounded-full animate-pulse`} />
               </h3>
               
               {!variantsLoaded ? (
@@ -266,12 +269,12 @@ function ProductDetail({ product, onBack }) {
             </div>
           ) : (
             <>
-              {/* Regular Quantity Selector (for non-custom, non-party products) */}
+              {/* Regular Quantity Selector */}
               {!product.isCustom && (
-                <div>
+                <div className="border-4 border-blue-200 rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50">
                   <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                     <span>Quantity</span>
-                    <div className={`w-2 h-2 ${productColour.bg} rounded-full opacity-60`} />
+                    <div className={`w-2 h-2 ${productColour.bg} rounded-full animate-pulse`} />
                   </h3>
                   <QuantitySelector 
                     min={product.minQuantity || 1}
@@ -282,9 +285,9 @@ function ProductDetail({ product, onBack }) {
                 </div>
               )}
 
-              {/* Sweet/Cable Picker (for custom products) */}
+              {/* Sweet/Cable Picker */}
               {product.isCustom && (
-                <div>
+                <div className="border-4 border-green-200 rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50">
                   <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                     <span>
                       {product.customType === 'cables' 
@@ -301,9 +304,9 @@ function ProductDetail({ product, onBack }) {
                 </div>
               )}
 
-              {/* Selection Summary for Custom Products */}
+              {/* Selection Summary */}
               {product.isCustom && selectedSweets.length > 0 && (
-                <div className={`bg-gradient-to-r from-green-50 to-${productColour.bg.replace('bg-', '').replace('-500', '')}-50 border-l-4 border-green-400 rounded-xl p-4 shadow-sm`}>
+                <div className="bg-gradient-to-r from-green-50 to-green-100 border-4 border-green-300 rounded-2xl p-4 shadow-sm">
                   <h4 className="font-semibold text-green-800 mb-2 flex items-center gap-2">
                     <span>Your Selection ({selectedSweets.length} items):</span>
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -314,24 +317,20 @@ function ProductDetail({ product, onBack }) {
                 </div>
               )}
 
-              {/* Action Button for non-party products */}
+              {/* Action Button */}
               <button 
                 onClick={handleAddToCart}
                 disabled={!canAddToCart()}
                 className={`
-                  w-full font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-white hover:border-opacity-50 relative overflow-hidden
+                  w-full font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-white flex items-center justify-center gap-3
                   ${canAddToCart() 
-                    ? `bg-gradient-to-r ${productColour.gradient} hover:shadow-${productColour.bg.split('-')[1]}-300/50 text-white` 
+                    ? `bg-gradient-to-r ${productColour.gradient} text-white shadow-lg` 
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }
                 `}
               >
-                {/* Subtle animated background */}
-                {canAddToCart() && (
-                  <div className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300" />
-                )}
-                
-                <span className="relative z-10">
+                <ShoppingBag className="w-5 h-5" />
+                <span>
                   {product.isCustom 
                     ? (canAddToCart() ? 'Add Custom Mix to Bag' : 'Please Complete Your Selection')
                     : `Add to Bag - £${totalPrice.toFixed(2)}`
