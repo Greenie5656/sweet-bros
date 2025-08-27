@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Plus, Minus } from 'lucide-react'
 
-function QuantitySelector({ min = 1, max = 10, onChange, product }) {
+function QuantitySelector({ min = 1, max = 99, onChange, product }) {
   const [quantity, setQuantity] = useState(min)
 
   // Check if this product uses dynamic pricing (party supplies)

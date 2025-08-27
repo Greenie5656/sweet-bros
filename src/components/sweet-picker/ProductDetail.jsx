@@ -278,7 +278,7 @@ function ProductDetail({ product, onBack }) {
                   </h3>
                   <QuantitySelector 
                     min={product.minQuantity || 1}
-                    max={20}
+                    max={99}
                     onChange={handleQuantityChange}
                     product={product}
                   />

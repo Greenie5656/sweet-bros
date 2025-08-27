@@ -134,10 +134,7 @@ function HomePage() {
 
       {/* Quick Stats with Colourful Background - Minimal spacing */}
       <section className="bg-gradient-to-r from-phlox-50 via-yellow_green-50 to-dodger_blue-50 py-8 relative overflow-hidden">
-        {/* Fun floating elements - FIXED BOUNCING */}
-        <div className="absolute top-4 left-4 text-4xl animate-bounce-slow">🍬</div>
-        <div className="absolute top-8 right-8 text-3xl animate-pulse">🍭</div>
-        <div className="absolute bottom-4 left-1/4 text-2xl animate-float">🌈</div>
+ 
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
