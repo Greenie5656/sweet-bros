@@ -5,6 +5,7 @@ import ProductGrid from '../sweet-picker/ProductGrid'
 import ProductDetail from '../sweet-picker/ProductDetail'
 import { getMultipleCollections, getCollectionByHandle } from '../../utils/shopify'
 import { useScrollToTop } from '../../utils/scrollHelpers'
+import { getItemColour } from '../../utils/colourHelpers'
 
 function ShopPage() {
   const [currentView, setCurrentView] = useState('collections')
@@ -305,8 +306,8 @@ function ShopPage() {
               <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4">
                 Sweet Bros Shop
               </h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Choose your adventure! From pick & mix bags to custom creations
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Choose your <span className="font-bold text-phlox-600">adventure</span>! From <span className="font-semibold text-dodger_blue-600">pick & mix bags</span> to <span className="font-bold text-red-600">custom creations</span>
               </p>
             </div>
             <CollectionGrid 
