@@ -202,8 +202,9 @@ function ShopPage() {
             }
           }
           
-          setProducts(productsData)
-        }
+          const sortedProducts = productsData.sort((a, b) => a.price - b.price)
+          setProducts(sortedProducts)
+                  }
       }
       
       // Update state first
