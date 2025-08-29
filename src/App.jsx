@@ -4,6 +4,7 @@ import { CartProvider } from './context/CartContext'
 import Layout from './components/layout/Layout'
 import HomePage from './components/pages/HomePage'
 import ShopPage from './components/pages/ShopPage'
+import AboutPage from './components/pages/AboutPage'
 import { scrollToTop } from './utils/scrollHelpers'
 
 // Component to handle scroll on route changes
@@ -32,6 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </Layout>
       </Router>
