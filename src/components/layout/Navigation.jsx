@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Home, ShoppingBag } from 'lucide-react'
+import { Menu, X, Home, ShoppingBag, Heart } from 'lucide-react'
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -23,6 +23,12 @@ function Navigation() {
       name: 'Shop',
       icon: ShoppingBag,
       color: 'from-yellow_green-500 to-dodger_blue-500'
+    },
+    {
+      path: '/about',
+      name: 'About',
+      icon: Heart,
+      color: 'from-red-500 to-phlox-500'
     }
   ]
 

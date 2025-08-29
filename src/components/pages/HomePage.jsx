@@ -72,6 +72,54 @@ function HomePage() {
             Welcome to <span className={`font-bold ${getItemColour('sweet-bros').text}`}>Sweet Bros</span> – where every <span className={`font-semibold ${getItemColour('treat').text}`}>treat</span> is made with a big scoop of <span className="font-bold text-red-600">brotherly love</span>!
           </p>
 
+
+                   {/* Sweet Bros Photo with Rainbow Background */}
+          <div className="flex justify-center mb-8 px-4">
+            <div className="relative">
+              {/* Single clean vertical rainbow gradient matching the bag pattern */}
+              <div className="absolute inset-0 rounded-3xl shadow-2xl" style={{
+                background: `linear-gradient(to bottom,
+                  #ff000c 0%,
+                  #ff000c 14.2%,
+                  #ff6b35 14.2%,
+                  #ff6b35 28.4%,
+                  #ffd23f 28.4%,
+                  #ffd23f 42.6%,
+                  #9fd600 42.6%,
+                  #9fd600 56.8%,
+                  #0495ff 56.8%,
+                  #0495ff 71%,
+                  #dd18fe 71%,
+                  #dd18fe 85.2%,
+                  #8b5cf6 85.2%,
+                  #8b5cf6 100%
+                )`,
+                backgroundRepeat: 'no-repeat'
+              }}></div>
+              
+              {/* Photo container with transparent background support */}
+              <div className="relative rounded-3xl p-6 transform hover:scale-105 transition-all duration-500">
+                <img 
+                  src="/homepage_photo.png" 
+                  alt="Sweet Bros - Two brothers holding colorful sweet bags" 
+                  className="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl object-contain rounded-2xl shadow-2xl"
+                  style={{
+                    maxWidth: '433px', // Preserve original width
+                    height: 'auto',
+                    filter: 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))'
+                  }}
+                />
+                
+                {/* Fun floating elements */}
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow_green-400 rounded-full animate-bounce shadow-lg border-2 border-white"></div>
+                <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-phlox-400 rounded-full animate-pulse shadow-lg border-2 border-white"></div>
+                <div className="absolute top-1/4 -left-4 w-4 h-4 bg-red-400 rounded-full opacity-80 animate-float shadow-lg"></div>
+                <div className="absolute top-3/4 -right-4 w-5 h-5 bg-dodger_blue-400 rounded-full opacity-70 animate-bounce shadow-lg" style={{animationDelay: '0.5s'}}></div>
+              </div>
+            </div>
+            </div>
+            
+
           {/* CTA Buttons with Random Colours - Right under text */}
           <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-2">
             <Link
