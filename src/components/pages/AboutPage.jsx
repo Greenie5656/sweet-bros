@@ -84,7 +84,7 @@ const AboutPage = () => {
             <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-phlox-400 to-phlox-600 rounded-full opacity-5"></div>
             <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-br from-red-400 to-red-600 rounded-full opacity-5"></div>
             
-            <div className="relative z-10 space-y-6 text-lg leading-relaxed">
+            <div className="relative z-10 space-y-6 text-lg leading-relaxed text-center">
               {/* Opening paragraph */}
               <p className="text-gray-700">
                 <span className="font-bold text-phlox-600">Sweet Bros</span> was founded by two brothers <span className="font-bold text-dodger_blue-600">Logan (13)</span> 😃 and <span className="font-bold text-red-600">Barkley (9)</span> 🤪 – with one simple goal... to create the perfect blend of high-quality <span className="font-semibold text-phlox-600">pick 'n' mix</span> 🍭 that makes people's day just that little bit <span className="font-semibold text-red-600">sweeter</span> 😋.

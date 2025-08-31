@@ -10,7 +10,7 @@ function Layout({ children }) {
   const isHomePage = location.pathname === '/'
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-white to-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-gray-100 to-purple-100">
       <Header />
       <main className={`flex-1 ${isHomePage ? 'p-0' : 'p-4 sm:p-6 lg:p-8'}`}>
         <div className={`${isHomePage ? 'w-full' : 'max-w-7xl mx-auto'}`}>

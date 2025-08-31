@@ -1,8 +1,12 @@
-// Footer image and social links
-import React from 'react'
-import { Facebook, Instagram, Mail } from 'lucide-react'
+// Footer image and social links with Returns section
+import React, { useState } from 'react'
+import { Facebook, Instagram, Mail, ChevronDown, ChevronUp } from 'lucide-react'
 
 function Footer() {
+  const [returnsOpen, setReturnsOpen] = useState(false)
+
+  const toggleReturns = () => setReturnsOpen(!returnsOpen)
+
   return (
     <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 mt-16">
       <div className="max-w-7xl mx-auto px-4">
@@ -69,14 +73,115 @@ function Footer() {
               <p className="text-gray-300 text-sm">Get in touch!</p>
               <p className="text-white font-medium">info@sweet-bros.co.uk</p>
             </div>
-
-            {/* Copyright */}
-            <div className="text-center md:text-right">
-              <p className="text-gray-400 text-xs">
-                © 2025 Sweet Bros. All rights reserved. 🍭
-              </p>
-            </div>
           </div>
+        </div>
+
+        {/* Returns & Care Section */}
+        <div className="mt-12 border-t border-gray-700 pt-8">
+          <div className="max-w-4xl mx-auto">
+            
+            {/* Returns Header - Collapsible */}
+            <button
+              onClick={toggleReturns}
+              className="w-full flex items-center justify-center gap-3 mb-6 group"
+            >
+              <div className="text-2xl">🍭</div>
+              <h3 className="text-xl font-bold text-white group-hover:text-phlox-300 transition-colors">
+                Sweet Returns & Care
+              </h3>
+              <div className="text-2xl">🍭</div>
+              {returnsOpen ? (
+                <ChevronUp className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+              )}
+            </button>
+
+            {/* Returns Content - Collapsible */}
+            {returnsOpen && (
+              <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-2xl p-6 md:p-8 space-y-4 text-gray-200 leading-relaxed">
+                
+                {/* Opening paragraph */}
+                <p>
+                  We take <span className="font-bold text-phlox-400">pride</span> in preparing your order <span className="font-semibold text-yellow_green-400">carefully</span> and making sure it reaches you just as you'd expect.
+                </p>
+                
+                <p>
+                  If for any reason this isn't the case, we'll do <span className="font-bold text-red-400">everything</span> we can to <span className="font-semibold text-dodger_blue-400">fix it</span>. Please contact our <span className="font-bold text-phlox-400">sweet team</span> at <a href="mailto:info@sweet-bros.co.uk" className="text-dodger_blue-400 hover:text-dodger_blue-300 font-semibold underline">info@sweet-bros.co.uk</a> with your order number and details of the issue within <span className="font-bold text-red-400">14 days</span> of receipt. We'll do our <span className="font-semibold text-yellow_green-400">best</span> to resolve the problem as <span className="font-bold text-dodger_blue-400">quickly</span> as possible.
+                </p>
+
+                {/* Bullet points with candy emojis */}
+                <div className="space-y-2 ml-4">
+                  <div className="flex items-start gap-2">
+                    <span className="text-yellow_green-400">🍬</span>
+                    <span>Returned products must be in <span className="font-bold text-yellow_green-400">perfect sweet condition</span>, unless specified as damaged during transit.</span>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <span className="text-dodger_blue-400">🍭</span>
+                    <span>Return postage is the buyer's responsibility. Returns must be sent via <span className="font-semibold text-dodger_blue-400">tracked mail</span>.</span>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <span className="text-red-400">🍫</span>
+                    <span>We do not take responsibility for <span className="font-bold text-red-400">incorrect shipping details</span> you provide. If your order is returned to us because of this, you'll need to cover the cost of re-delivery.</span>
+                  </div>
+                </div>
+
+                {/* NO REFUNDS section */}
+                <div className="bg-red-900/30 border-l-4 border-red-400 rounded-lg p-4 space-y-2">
+                  <div className="flex items-start gap-2">
+                    <span>❌</span>
+                    <span><span className="font-bold text-red-400">NO REFUNDS</span> for melted chocolate during summer months.</span>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <span>❌</span>
+                    <span><span className="font-bold text-red-400">NO REFUNDS</span> will be given for items that go missing in the post – claim directly with Royal Mail or Parcelforce.</span>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <span>❌</span>
+                    <span>We cannot accept returns on the <span className="font-bold text-red-400">Build Your Own Mix Bag</span>, as it is custom-made.</span>
+                  </div>
+                </div>
+
+                {/* Refund options */}
+                <p>
+                  If your order qualifies for a <span className="font-bold text-yellow_green-400">refund</span> (excluding the Build Your Own Mix Bag), you can either:
+                </p>
+                
+                <div className="space-y-2 ml-4">
+                  <div className="flex items-start gap-2">
+                    <span className="text-phlox-400">🎁</span>
+                    <span>Choose to have your items <span className="font-semibold text-phlox-400">re-sent</span> (you'll need to cover postage), or</span>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <span className="text-yellow_green-400">💰</span>
+                    <span>Receive a <span className="font-semibold text-yellow_green-400">refund</span> for the items.</span>
+                  </div>
+                </div>
+
+                {/* Hours and closing */}
+                <div className="text-center mt-6 pt-4 border-t border-gray-600">
+                  <p className="text-gray-300">
+                    We operate <span className="font-semibold text-dodger_blue-400">Monday to Friday, 9:00 – 16:30</span>.
+                  </p>
+                  <p className="mt-2 text-lg font-bold text-phlox-400">
+                    Stay Sweet! 🍬
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="text-center mt-8 pt-4 border-t border-gray-700">
+          <p className="text-gray-400 text-xs">
+            © 2025 Sweet Bros. All rights reserved. 🍭
+          </p>
         </div>
       </div>
     </footer>
