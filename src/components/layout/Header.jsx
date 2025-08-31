@@ -5,7 +5,7 @@ import Navigation from './Navigation'
 
 function Header() {
   return (
-    <header className="sticky top-0 bg-gradient-to-r from-phlox-50 to-dodger_blue-50 shadow-lg z-50 border-b-2 sm:border-b-4 border-phlox-300">
+    <header className="sticky top-0 bg-white shadow-lg z-50 border-b-2 sm:border-b-4 border-phlox-300">
       <div className="max-w-7xl mx-auto px-2 sm:px-4">
         
         {/* Mobile Layout: Compact for both portrait and landscape */}
