@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Home, ShoppingBag, Heart } from 'lucide-react'
+import { Menu, X, Home, ShoppingBag, Heart, Camera } from 'lucide-react'
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -23,6 +23,12 @@ function Navigation() {
       name: 'Shop',
       icon: ShoppingBag,
       color: 'from-yellow_green-500 to-dodger_blue-500'
+    },
+    {
+      path: '/gallery',
+      name: 'Gallery',
+      icon: Camera,
+      color: 'from-dodger_blue-500 to-phlox-500'
     },
     {
       path: '/about',
@@ -133,7 +139,10 @@ function Navigation() {
                       <div className="flex-1">
                         <div className="font-bold text-sm">{item.name}</div>
                         <div className={`text-xs ${isActive(item.path) ? 'text-white text-opacity-80' : 'text-gray-500'}`}>
-                          {item.path === '/' ? 'Welcome home!' : 'Browse our sweets'}
+                          {item.path === '/' && 'Welcome home!'}
+                          {item.path === '/shop' && 'Browse our sweets'}
+                          {item.path === '/gallery' && 'Sweet memories'}
+                          {item.path === '/about' && 'Meet the brothers'}
                         </div>
                       </div>
                       
@@ -150,7 +159,7 @@ function Navigation() {
             {/* Compact Footer - Only show if there's space */}
             <div className="absolute bottom-3 left-3 right-3 hidden landscape:hidden portrait:block">
               <div className="bg-gradient-to-r from-phlox-400 via-red-400 via-yellow_green-400 to-dodger_blue-400 rounded-lg p-2 text-white text-center">
-                <div className="text-lg mb-0.5">🍭</div>
+                <div className="text-lg mb-0.5">🭨</div>
                 <div className="font-bold text-xs">Sweet Navigation!</div>
               </div>
             </div>

@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": "spud-bros-collab",
+      "title": "Sweet Bros x Spud Bros",
+      "date": "2025-01-10", 
+      "images": [
+        "/images/gallery/spud-bros.jpg"
+      ],
+      "excerpt": "",
+      "tags": ["collaboration", "spud-bros", "business"]
+    },
+    {
+      "id": "market-stall",
+      "title": "Sweet Bros Market Stall",
+      "date": "2025-01-08",
+      "images": [
+        "/images/gallery/market-stall.jpg"
+      ],
+      "excerpt": "",
+      "tags": ["market", "stall", "business", "sales"]
+    },
+    {
+      "id": "brothers-delivery",
+      "title": "Brothers Making Deliveries",
+      "date": "2025-01-05",
+      "images": [
+        "/images/gallery/brothers-delivery.jpg"
+      ],
+      "excerpt": "",
+      "tags": ["delivery", "brothers", "work", "teamwork"]
+    },
+    {
+      "id": "glenside-juniors",
+      "title": "Sweet Bros x Glenside Juniors FC",
+      "date": "2025-01-12",
+      "images": [
+        "/images/gallery/glenside-juniors.jpg"
+      ],
+      "excerpt": "",
+      "tags": ["football", "glenside-juniors", "collaboration"]
+    }
+  ]
+}
