@@ -121,7 +121,8 @@ function PartyTubSelector({ product, onAddToCart, productColour, variants = [] }
             <p className="text-white/90 text-sm">Need more for a bigger party? Add extra tubs!</p>
           </div>
 
-          <div className="flex items-center justify-between">
+          {/* Counter - Full Width */}
+          <div className="flex justify-center mb-4">
             <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-2xl border-2 border-white/30 shadow-lg">
               <button
                 onClick={handleExtraDecrease}
@@ -144,12 +145,17 @@ function PartyTubSelector({ product, onAddToCart, productColour, variants = [] }
                 <Plus className="w-6 h-6 font-bold" />
               </button>
             </div>
+          </div>
 
-            <div className="text-right">
-              <div className="text-2xl font-extrabold text-white drop-shadow-lg">
+          {/* Price Display - Below Counter, Full Width */}
+          <div className="text-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30 shadow-lg">
+              <div className="text-2xl font-extrabold text-white drop-shadow-lg mb-1">
                 +£{(extraTubs * 4.50).toFixed(2)}
               </div>
-              <div className="text-xs text-white/80 font-medium">for {extraTubs} extra</div>
+              <div className="text-sm text-white/90 font-medium">
+                for {extraTubs} extra tub{extraTubs !== 1 ? 's' : ''}
+              </div>
             </div>
           </div>
 
