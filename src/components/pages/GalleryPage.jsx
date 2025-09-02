@@ -18,10 +18,10 @@ function GalleryCard({ post, onClick }) {
         <div className={`relative h-80 ${cardColour.bg} overflow-hidden rounded-2xl p-4`}>
           
           {/* Decorative transparent balls - like other sections */}
-          <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 animate-pulse"></div>
-          <div className="absolute bottom-6 left-6 w-8 h-8 rounded-full bg-white/20 animate-bounce" style={{animationDelay: '0.5s'}}></div>
-          <div className="absolute top-1/3 left-4 w-6 h-6 rounded-full bg-white/15 opacity-80" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-1/4 right-8 w-4 h-4 rounded-full bg-white/25 animate-pulse" style={{animationDelay: '0.3s'}}></div>
+          <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/30 animate-pulse shadow-lg"></div>
+<div className="absolute bottom-6 left-6 w-8 h-8 rounded-full bg-white/40 animate-bounce shadow-md" style={{animationDelay: '0.5s'}}></div>
+<div className="absolute top-1/3 left-4 w-6 h-6 rounded-full bg-white/35 animate-pulse shadow-sm" style={{animationDelay: '1s'}}></div>
+<div className="absolute bottom-1/4 right-8 w-4 h-4 rounded-full bg-white/45 animate-bounce shadow-sm" style={{animationDelay: '0.3s'}}></div>
           
           {/* Full Image - visible and contained */}
           {mainImage ? (
@@ -104,10 +104,10 @@ function GalleryModal({ post, onClose, onNext, onPrevious }) {
         <div className={`relative ${cardColour.bg} h-96 overflow-hidden rounded-2xl p-4`}>
           
           {/* Decorative transparent balls */}
-          <div className="absolute top-6 right-6 w-16 h-16 rounded-full bg-white/10 animate-float"></div>
-          <div className="absolute bottom-8 left-8 w-10 h-10 rounded-full bg-white/20 animate-bounce" style={{animationDelay: '0.7s'}}></div>
-          <div className="absolute top-1/4 left-6 w-6 h-6 rounded-full bg-white/15 opacity-60" style={{animationDelay: '1.2s'}}></div>
-          <div className="absolute bottom-1/3 right-12 w-8 h-8 rounded-full bg-white/25 animate-pulse" style={{animationDelay: '0.4s'}}></div>
+          <div className="absolute top-6 right-6 w-16 h-16 rounded-full bg-white/35 animate-pulse shadow-lg"></div>
+<div className="absolute bottom-8 left-8 w-10 h-10 rounded-full bg-white/45 animate-bounce shadow-md" style={{animationDelay: '0.7s'}}></div>
+<div className="absolute top-1/4 left-6 w-6 h-6 rounded-full bg-white/30 animate-pulse shadow-sm" style={{animationDelay: '1.2s'}}></div>
+<div className="absolute bottom-1/3 right-12 w-8 h-8 rounded-full bg-white/40 animate-bounce shadow-sm" style={{animationDelay: '0.4s'}}></div>
           
           <img 
             src={post.images[currentImageIndex]}

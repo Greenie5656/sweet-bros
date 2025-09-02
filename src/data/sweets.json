@@ -121,7 +121,7 @@
   },
   {
     "id": "sour-worms",
-    "name": "Sour Worms",
+    "name": "Sour Glow Worms",
     "category": "sour",
     "image": "/images/sweets/sour_worms.jpg"
   },
@@ -304,5 +304,11 @@
     "name": "Twist Kisses",
     "category": "jelly",
     "image": "/images/sweets/twist_kisses.jpg"
+  },
+  {
+    "id": "chocolate-spinning-tops",
+    "name": "Chocolate Spinning Tops",
+    "category": "jelly",
+    "image": "/images/sweets/chocolate_spinning_tops.jpg"
   }
 ]
