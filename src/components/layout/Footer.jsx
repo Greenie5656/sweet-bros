@@ -1,4 +1,3 @@
-// Footer image and social links with Returns section
 import React, { useState } from 'react'
 import { Facebook, Instagram, Mail, ChevronDown, ChevronUp } from 'lucide-react'
 
@@ -10,166 +9,128 @@ function Footer() {
   return (
     <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 mt-16">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+        
+        {/* Main Footer Content - More Compact */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           
-          {/* Footer Logo - Left Side */}
+          {/* Sweet Bros Footer Logo - Left Side */}
           <div className="flex-shrink-0">
             <img 
               src="/footer-image.png" 
               alt="Stay Sweet" 
-              className="h-24 sm:h-32 object-contain hover:scale-105 transition-transform duration-300"
+              className="h-16 sm:h-20 object-contain hover:scale-105 transition-transform duration-300"
             />
           </div>
 
-          {/* Social Links & Contact - Right Side */}
-          <div className="flex flex-col items-center md:items-end space-y-4">
+          {/* Social Links & Contact - Center/Right */}
+          <div className="flex flex-col items-center md:items-end space-y-3">
             
-            {/* Social Icons */}
-            <div className="flex items-center gap-4">
+            {/* Compact Social Icons */}
+            <div className="flex items-center gap-3">
               
-              {/* Facebook - Phlox */}
+              {/* Facebook */}
               <a 
                 href="https://www.facebook.com/profile.php?id=61577922897409"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-3 bg-phlox-500 hover:bg-phlox-600 rounded-xl transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-phlox-300/50"
+                className="group p-2 bg-phlox-500 hover:bg-phlox-600 rounded-lg transition-all duration-300 transform hover:scale-110"
               >
-                <Facebook className="w-6 h-6 text-white" />
+                <Facebook className="w-5 h-5 text-white" />
               </a>
 
-              {/* Instagram - Yellow Green */}
+              {/* Instagram */}
               <a 
                 href="https://www.instagram.com/realsweetbros/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-3 bg-yellow_green-500 hover:bg-yellow_green-600 rounded-xl transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-yellow_green-300/50"
+                className="group p-2 bg-yellow_green-500 hover:bg-yellow_green-600 rounded-lg transition-all duration-300 transform hover:scale-110"
               >
-                <Instagram className="w-6 h-6 text-white" />
+                <Instagram className="w-5 h-5 text-white" />
               </a>
 
-              {/* TikTok - Red */}
+              {/* TikTok */}
               <a 
                 href="https://www.tiktok.com/@realsweetbros?_t=ZN-8yXG8Zsor7W&_r=1&fbclid=IwY2xjawL9jDBleHRuA2FlbQIxMQABHjmqR0SRFlQEEoRbS9PXuGjuRI6_jj6b3Jjg7H2SvKIjq0gwC_Zo25NNJ1yF_aem_YsIS0hkrl2-ia52jvugRzw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-3 bg-red-500 hover:bg-red-600 rounded-xl transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-red-300/50"
+                className="group p-2 bg-red-500 hover:bg-red-600 rounded-lg transition-all duration-300 transform hover:scale-110"
               >
-                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                 </svg>
               </a>
 
-              {/* Email - Dodger Blue */}
+              {/* Email */}
               <a 
                 href="mailto:info@sweet-bros.co.uk"
-                className="group p-3 bg-dodger_blue-500 hover:bg-dodger_blue-600 rounded-xl transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-dodger_blue-300/50"
+                className="group p-2 bg-dodger_blue-500 hover:bg-dodger_blue-600 rounded-lg transition-all duration-300 transform hover:scale-110"
               >
-                <Mail className="w-6 h-6 text-white" />
+                <Mail className="w-5 h-5 text-white" />
               </a>
             </div>
 
-            {/* Contact Info */}
-            <div className="text-center md:text-right space-y-1">
-              <p className="text-gray-300 text-sm">Get in touch!</p>
-              <p className="text-white font-medium">info@sweet-bros.co.uk</p>
+            {/* Compact Contact Info */}
+            <div className="text-center md:text-right">
+              <p className="text-white font-medium text-sm">info@sweet-bros.co.uk</p>
             </div>
           </div>
         </div>
 
-        {/* Returns & Care Section */}
-        <div className="mt-12 border-t border-gray-700 pt-8">
+        {/* Compact Returns Section - Collapsible */}
+        <div className="mt-6 border-t border-gray-700 pt-4">
           <div className="max-w-4xl mx-auto">
             
-            {/* Returns Header - Collapsible */}
+            {/* Returns Header - More Compact */}
             <button
               onClick={toggleReturns}
-              className="w-full flex items-center justify-center gap-3 mb-6 group"
+              className="w-full flex items-center justify-center gap-2 mb-3 group"
             >
-              <div className="text-2xl">🍭</div>
-              <h3 className="text-xl font-bold text-white group-hover:text-phlox-300 transition-colors">
-                Sweet Returns & Care
+              <div className="text-lg">🍭</div>
+              <h3 className="text-lg font-bold text-white group-hover:text-phlox-300 transition-colors">
+                Returns & Care Policy
               </h3>
-              <div className="text-2xl">🍭</div>
+              <div className="text-lg">🍭</div>
               {returnsOpen ? (
-                <ChevronUp className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                <ChevronUp className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
               ) : (
-                <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
               )}
             </button>
 
-            {/* Returns Content - Collapsible */}
+            {/* Returns Content - Compact version */}
             {returnsOpen && (
-              <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-2xl p-6 md:p-8 space-y-4 text-gray-200 leading-relaxed">
+              <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl p-4 md:p-6 space-y-3 text-gray-200 leading-relaxed text-sm">
                 
-                {/* Opening paragraph */}
                 <p>
                   We take <span className="font-bold text-phlox-400">pride</span> in preparing your order <span className="font-semibold text-yellow_green-400">carefully</span> and making sure it reaches you just as you'd expect.
                 </p>
                 
                 <p>
-                  If for any reason this isn't the case, we'll do <span className="font-bold text-red-400">everything</span> we can to <span className="font-semibold text-dodger_blue-400">fix it</span>. Please contact our <span className="font-bold text-phlox-400">sweet team</span> at <a href="mailto:info@sweet-bros.co.uk" className="text-dodger_blue-400 hover:text-dodger_blue-300 font-semibold underline">info@sweet-bros.co.uk</a> with your order number and details of the issue within <span className="font-bold text-red-400">14 days</span> of receipt. We'll do our <span className="font-semibold text-yellow_green-400">best</span> to resolve the problem as <span className="font-bold text-dodger_blue-400">quickly</span> as possible.
+                  If for any reason this isn't the case, we'll do <span className="font-bold text-red-400">everything</span> we can to <span className="font-semibold text-dodger_blue-400">fix it</span>. Please contact our <span className="font-bold text-phlox-400">sweet team</span> at <a href="mailto:info@sweet-bros.co.uk" className="text-dodger_blue-400 hover:text-dodger_blue-300 font-semibold underline">info@sweet-bros.co.uk</a> with your order number and details within <span className="font-bold text-red-400">14 days</span> of receipt.
                 </p>
 
-                {/* Bullet points with candy emojis */}
-                <div className="space-y-2 ml-4">
-                  <div className="flex items-start gap-2">
+                {/* Compact bullet points */}
+                <div className="space-y-1 ml-2">
+                  <div className="flex items-start gap-2 text-xs">
                     <span className="text-yellow_green-400">🍬</span>
-                    <span>Returned products must be in <span className="font-bold text-yellow_green-400">perfect sweet condition</span>, unless specified as damaged during transit.</span>
+                    <span>Returned products must be in perfect condition, unless damaged during transit.</span>
                   </div>
                   
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 text-xs">
                     <span className="text-dodger_blue-400">🍭</span>
-                    <span>Return postage is the buyer's responsibility. Returns must be sent via <span className="font-semibold text-dodger_blue-400">tracked mail</span>.</span>
+                    <span>Return postage is buyer's responsibility. Use tracked mail.</span>
                   </div>
                   
-                  <div className="flex items-start gap-2">
-                    <span className="text-red-400">🍫</span>
-                    <span>We do not take responsibility for <span className="font-bold text-red-400">incorrect shipping details</span> you provide. If your order is returned to us because of this, you'll need to cover the cost of re-delivery.</span>
+                  <div className="flex items-start gap-2 text-xs">
+                    <span className="text-red-400">❌</span>
+                    <span>NO REFUNDS for melted chocolate, missing post items, or custom Build Your Own Mix Bags.</span>
                   </div>
                 </div>
 
-                {/* NO REFUNDS section */}
-                <div className="bg-red-900/30 border-l-4 border-red-400 rounded-lg p-4 space-y-2">
-                  <div className="flex items-start gap-2">
-                    <span>❌</span>
-                    <span><span className="font-bold text-red-400">NO REFUNDS</span> for melted chocolate during summer months.</span>
-                  </div>
-                  
-                  <div className="flex items-start gap-2">
-                    <span>❌</span>
-                    <span><span className="font-bold text-red-400">NO REFUNDS</span> will be given for items that go missing in the post – claim directly with Royal Mail or Parcelforce.</span>
-                  </div>
-                  
-                  <div className="flex items-start gap-2">
-                    <span>❌</span>
-                    <span>We cannot accept returns on the <span className="font-bold text-red-400">Build Your Own Mix Bag</span>, as it is custom-made.</span>
-                  </div>
-                </div>
-
-                {/* Refund options */}
-                <p>
-                  If your order qualifies for a <span className="font-bold text-yellow_green-400">refund</span> (excluding the Build Your Own Mix Bag), you can either:
-                </p>
-                
-                <div className="space-y-2 ml-4">
-                  <div className="flex items-start gap-2">
-                    <span className="text-phlox-400">🎁</span>
-                    <span>Choose to have your items <span className="font-semibold text-phlox-400">re-sent</span> (you'll need to cover postage), or</span>
-                  </div>
-                  
-                  <div className="flex items-start gap-2">
-                    <span className="text-yellow_green-400">💰</span>
-                    <span>Receive a <span className="font-semibold text-yellow_green-400">refund</span> for the items.</span>
-                  </div>
-                </div>
-
-                {/* Hours and closing */}
-                <div className="text-center mt-6 pt-4 border-t border-gray-600">
-                  <p className="text-gray-300">
-                    We operate <span className="font-semibold text-dodger_blue-400">Monday to Friday, 9:00 – 16:30</span>.
-                  </p>
-                  <p className="mt-2 text-lg font-bold text-phlox-400">
-                    Stay Sweet! 🍬
+                {/* Compact hours */}
+                <div className="text-center mt-4 pt-2 border-t border-gray-600">
+                  <p className="text-gray-300 text-xs">
+                    We operate <span className="font-semibold text-dodger_blue-400">Monday-Friday, 9:00-16:30</span>
                   </p>
                 </div>
               </div>
@@ -177,11 +138,60 @@ function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="text-center mt-8 pt-4 border-t border-gray-700">
-          <p className="text-gray-400 text-xs">
-            © 2025 Sweet Bros. All rights reserved. 🍭
-          </p>
+        {/* COMPACT BRANDING SECTION - Original Style but Black Lancashire Box */}
+        <div className="mt-6 border-t border-gray-700 pt-4">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+            
+            {/* Shopify Credit - Left */}
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400 text-xs">Powered by</span>
+              <div className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-lg hover:bg-gray-700 transition-colors">
+                <svg className="w-4 h-4" viewBox="0 0 120 120" fill="none">
+                  <path d="M30 30h60v60H30V30z" fill="#95BF47"/>
+                  <path d="M70 50c0-5.5-4.5-10-10-10s-10 4.5-10 10v20h20V50z" fill="#FFF"/>
+                  <circle cx="60" cy="45" r="3" fill="#95BF47"/>
+                  <path d="M85 25l-5 20-10-5 15-15z" fill="#5E8E3E"/>
+                </svg>
+                <span className="text-green-400 font-semibold text-xs">Shopify</span>
+              </div>
+            </div>
+
+            {/* ENHANCED Lancashire Web Fixers Credit - Center with BLACK background */}
+            <div className="flex items-center gap-3">
+              <span className="text-gray-400 text-xs">Website crafted by</span>
+              
+              <a 
+                href="https://lancashirewebfixers.co.uk" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 bg-black hover:bg-gray-900 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg border border-gray-600 hover:border-red-500 overflow-visible"
+              >
+                {/* BIGGER Web Fixers Logo - Made White with Scale Transform */}
+                <img 
+                  src="/FullLogo_resized.png" 
+                  alt="Lancashire Web Fixers" 
+                  className="w-8 h-8 object-contain filter brightness-0 invert transform scale-150"
+                />
+                
+                {/* Web Fixers Text with Marble Font - WHITE Lancashire, RED Web Fixers */}
+                <div className="flex flex-col leading-tight">
+                  <span className="text-white font-extrabold text-sm font-marble group-hover:text-gray-200 transition-colors tracking-wide">
+                    LANCASHIRE
+                  </span>
+                  <span className="text-red-600 font-extrabold text-xs font-marble tracking-widest group-hover:text-red-500 transition-colors">
+                    WEB FIXERS
+                  </span>
+                </div>
+              </a>
+            </div>
+
+            {/* Copyright - Right */}
+            <div className="text-center lg:text-right">
+              <p className="text-gray-400 text-xs">
+                © 2025 Sweet Bros 🍭
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
