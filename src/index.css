@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Web Fixers Font - Fixed path with URL encoding */
+@font-face {
+  font-family: 'Marble';
+  src: url('/fonts/Marble%20ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
