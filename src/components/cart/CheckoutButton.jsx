@@ -120,7 +120,6 @@ onSuccess?.(cart)
 let finalCheckoutUrl = cart.checkoutUrl.replace('kkidz3-1h.myshopify.com', 'shop.sweet-bros.co.uk')
 console.log('Final checkout URL:', finalCheckoutUrl)
 
-localStorage.removeItem('sweetBrosCart')
 
 // Redirect to Shopify checkout using modified URL
 window.location.href = finalCheckoutUrl
