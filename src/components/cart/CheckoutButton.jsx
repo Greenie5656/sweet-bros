@@ -77,6 +77,9 @@ function CheckoutButton({ cartItems, onSuccess, onError }) {
   }
 
   const handleCheckout = async () => {
+    console.log('=== ENVIRONMENT CHECK ===')
+  console.log('SHOPIFY_DOMAIN:', import.meta.env.VITE_SHOPIFY_DOMAIN)
+  console.log('Expected: shop.sweet-bros.co.uk')
     if (!cartItems || cartItems.length === 0) {
       onError?.('Cart is empty')
       return
@@ -107,14 +110,20 @@ function CheckoutButton({ cartItems, onSuccess, onError }) {
         throw new Error('No checkout URL received from Shopify')
       }
 
-      console.log('Cart created successfully:', cart.id)
-      console.log('Redirecting to checkout:', cart.checkoutUrl)
+console.log('Cart created successfully:', cart.id)
+console.log('Original checkout URL:', cart.checkoutUrl)
 
-      // Call success callback if provided
-      onSuccess?.(cart)
+// Call success callback if provided
+onSuccess?.(cart)
 
-      // Redirect to Shopify checkout
-      window.location.href = cart.checkoutUrl
+// Replace domain in checkout URL
+let finalCheckoutUrl = cart.checkoutUrl.replace('kkidz3-1h.myshopify.com', 'shop.sweet-bros.co.uk')
+console.log('Final checkout URL:', finalCheckoutUrl)
+
+localStorage.removeItem('sweetBrosCart')
+
+// Redirect to Shopify checkout using modified URL
+window.location.href = finalCheckoutUrl
 
     } catch (error) {
       console.error('Checkout error:', error)

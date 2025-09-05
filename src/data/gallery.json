@@ -39,6 +39,16 @@
       ],
       "excerpt": "",
       "tags": ["football", "glenside-juniors", "collaboration"]
+    },
+    {
+      "id": "blackburn-rovers",
+      "title": "Blackburn Rovers Sweet Shop",
+      "date": "2025-01-12",
+      "images": [
+        "/images/gallery/blackburn-rovers.jpg"
+      ],
+      "excerpt": "",
+      "tags": ["football", "blackburn-rovers", "collaboration"]
     }
   ]
 }
